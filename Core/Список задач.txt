@@ -1,5 +1,4 @@
-﻿	Добавить в модель OrderView поле для OrderProductView
-	Модель OrderBinding
+﻿	Модель OrderBinding
 	Модель ProductBinding
 	Модель OrderProductBinding
 	Лучше продумать View модели
