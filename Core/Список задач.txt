@@ -1,8 +1,6 @@
-﻿	Лучше продумать View модели
-	Не хранить сумму, а динамически подсчитывать в OrderView
-	Убрать сумму из OrderBinding
+﻿	Не хранить сумму, а динамически подсчитывать в OrderView
 	Хранить цену товара также в модели OrderProductView
-	Хранить цену товара также в модели OrderProductBinding
+>	Хранить цену товара также в модели OrderProductBinding
 	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
@@ -21,3 +19,12 @@
 	Класс для создания продукта
 	Создать Windows Forms проект
 	Создать WPF проект
+===============================================================================================
+Модель ProductView
+Модель OrderView
+Модель OrderProductView
+Добавлено поле для OrderProductView в модель OrderView
+Модель ProductBinding
+Модель OrderBinding
+Модель OrderProductBinding
+Убрано поле Sum из OrderBinding
