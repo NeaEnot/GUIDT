@@ -28,12 +28,13 @@ namespace Test.CoreTest
         [Fact]
         public void TestOrderProductView()
         {
-            OrderProductView opv = new OrderProductView { Id = 0, OrderId = 0, ProductId = 0, Count = 10 };
+            OrderProductView opv = new OrderProductView { Id = 0, OrderId = 0, ProductId = 0, Count = 10, Price = 100 };
 
             Assert.Equal(0, opv.Id);
             Assert.Equal(0, opv.OrderId);
             Assert.Equal(0, opv.ProductId);
             Assert.Equal(10, opv.Count);
+            Assert.Equal(100, opv.Price);
         }
 
         [Fact]

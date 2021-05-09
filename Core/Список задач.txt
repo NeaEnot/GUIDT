@@ -1,6 +1,4 @@
 ﻿	Не хранить сумму, а динамически подсчитывать в OrderView
-	Хранить цену товара также в модели OrderProductView
->	Хранить цену товара также в модели OrderProductBinding
 	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
@@ -28,3 +26,5 @@
 Модель OrderBinding
 Модель OrderProductBinding
 Убрано поле Sum из OrderBinding
+Хранить цену товара также в модели OrderProductBinding
+Хранить цену товара также в модели OrderProductView
