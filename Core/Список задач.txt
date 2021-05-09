@@ -1,7 +1,4 @@
-﻿	Модель OrderBinding
-	Модель ProductBinding
-	Модель OrderProductBinding
-	Лучше продумать View модели
+﻿	Лучше продумать View модели
 	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
