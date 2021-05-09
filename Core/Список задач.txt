@@ -1,6 +1,4 @@
-﻿	Интерфейс IOrderLogic
-	Интерфейс IProductLogic
-	Создать ListImplement
+﻿	Создать ListImplement
 	Метод OrderLogic.Create
 	Метод OrderLogic.Read
 	Метод OrderLogic.Update
@@ -29,3 +27,5 @@
 Хранить цену товара также в модели OrderProductView
 Не хранить сумму, а динамически подсчитывать в OrderView
 Добавить поле ProductName в OrderProductView
+Интерфейс IOrderLogic
+Интерфейс IProductLogic
