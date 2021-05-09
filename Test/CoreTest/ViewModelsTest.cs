@@ -23,5 +23,16 @@ namespace Test.CoreTest
             Assert.Equal(0, ov.Id);
             Assert.Equal(1000, ov.Sum);
         }
+
+        [Fact]
+        public void OrderProductView()
+        {
+            OrderProductView opv = new OrderProductView { Id = 0, OrderId = 0, ProductId = 0, Count = 10 };
+
+            Assert.Equal(0, opv.Id);
+            Assert.Equal(0, opv.OrderId);
+            Assert.Equal(0, opv.ProductId);
+            Assert.Equal(10, opv.Count);
+        }
     }
 }

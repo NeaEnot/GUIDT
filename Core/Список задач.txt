@@ -1,8 +1,8 @@
 ﻿	Добавить в модель OrderView поле для OrderProductView
-	Модель OrderProductView
 	Модель OrderBinding
 	Модель ProductBinding
 	Модель OrderProductBinding
+	Лучше продумать View модели
 	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
