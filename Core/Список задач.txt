@@ -28,3 +28,4 @@
 Хранить цену товара также в модели OrderProductBinding
 Хранить цену товара также в модели OrderProductView
 Не хранить сумму, а динамически подсчитывать в OrderView
+Добавить поле ProductName в OrderProductView
