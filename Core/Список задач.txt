@@ -1,0 +1,23 @@
+﻿	Модель OrderView
+	Модель OrderProductView
+	Модель OrderBinding
+	Модель ProductBinding
+	Модель OrderProductBinding
+	Интерфейс IOrderLogic
+	Интерфейс IProductLogic
+	Создать ListImplement
+	Метод OrderLogic.Create
+	Метод OrderLogic.Read
+	Метод OrderLogic.Update
+	Метод OrderLogic.Delete
+	Метод ProductLogic.Create
+	Метод ProductLogic.Read
+	Метод ProductLogic.Update
+	Метод ProductLogic.Delete
+	Создать GuiDriver
+	Класс для просмотра всех заказов
+	Класс для создания заказа
+	Класс для добавления продукта к заказу
+	Класс для создания продукта
+	Создать Windows Forms проект
+	Создать WPF проект

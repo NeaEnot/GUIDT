@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\View\" />
     <Folder Include="Models\Binding\" />
   </ItemGroup>
 
