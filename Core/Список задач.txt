@@ -1,5 +1,4 @@
-﻿	Не хранить сумму, а динамически подсчитывать в OrderView
-	Интерфейс IOrderLogic
+﻿	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
 	Метод OrderLogic.Create
@@ -28,3 +27,4 @@
 Убрано поле Sum из OrderBinding
 Хранить цену товара также в модели OrderProductBinding
 Хранить цену товара также в модели OrderProductView
+Не хранить сумму, а динамически подсчитывать в OrderView

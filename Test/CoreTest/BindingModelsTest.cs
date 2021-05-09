@@ -29,7 +29,7 @@ namespace Test.CoreTest
         }
 
         [Fact]
-        public void TestOrderProductsInOrderBinding()
+        public void TestOrderBinding()
         {
             OrderBinding ov = new OrderBinding { Id = 0, OrderProducts = new List<OrderProductBinding>() };
             ov.OrderProducts.Add(new OrderProductBinding { Id = 0, OrderId = 0, ProductId = 0, Count = 10 });

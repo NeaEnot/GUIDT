@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Models.View
 {
@@ -6,7 +7,7 @@ namespace Core.Models.View
     {
         public int Id { get; set; }
 
-        public int Sum { get; set; }
+        public int Sum { get { return OrderProducts.Sum(rec => rec.Price * rec.Count); } }
 
         public List<OrderProductView> OrderProducts { get; set; }
     }
