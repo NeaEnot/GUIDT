@@ -1,4 +1,8 @@
 ﻿	Лучше продумать View модели
+	Не хранить сумму, а динамически подсчитывать в OrderView
+	Убрать сумму из OrderBinding
+	Хранить цену товара также в модели OrderProductView
+	Хранить цену товара также в модели OrderProductBinding
 	Интерфейс IOrderLogic
 	Интерфейс IProductLogic
 	Создать ListImplement
