@@ -19,7 +19,6 @@ namespace ListImplement
 
         public static ContextSingleton GetInstance()
         {
-            //return new ContextSingleton();
             if (instance == null)
             {
                 instance = new ContextSingleton();

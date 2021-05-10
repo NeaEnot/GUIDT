@@ -1,5 +1,4 @@
-﻿	Метод ListImplement.Implements.ProductLogic.Create
-	Самостоятельное выставление Id для Product
+﻿	Самостоятельное выставление Id для Product
 	Считывание Product по Id
 	Метод ListImplement.Implements.ProductLogic.Update
 	Метод ListImplement.Implements.ProductLogic.Delete
@@ -42,3 +41,4 @@
 Несколько OrderProduct с одинаковым ProductId при создании
 Несколько OrderProduct с одинаковым ProductId при обновлении
 Метод ListImplement.Implements.ProductLogic.Read
+Метод ListImplement.Implements.ProductLogic.Create
