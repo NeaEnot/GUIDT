@@ -8,19 +8,19 @@ namespace ListImplement.Implements
 {
     public class ProductLogic
     {
-        private List<Product> products = new List<Product>();
+        private ContextSingleton context = ContextSingleton.GetInstance();
 
         public void Create(ProductBinding model)
         {
             Product product = MapProduct(model);
-            product.Id = products.Count > 0 ? products.Max(rec => rec.Id) + 1 : 1;
-            products.Add(product);
+            product.Id = context.Products.Count > 0 ? context.Products.Max(rec => rec.Id) + 1 : 1;
+            context.Products.Add(product);
         }
 
         public List<ProductView> Read(ProductBinding model)
         {
             return
-                products
+                context.Products
                 .Where(rec => model == null || rec.Id == model.Id)
                 .Select(rec => MapProductView(rec))
                 .ToList();
@@ -28,12 +28,17 @@ namespace ListImplement.Implements
 
         public void Update(ProductBinding model)
         {
-            Product product = products.FirstOrDefault(rec => rec.Id == model.Id);
+            Product product = context.Products.FirstOrDefault(rec => rec.Id == model.Id);
             if (product != null)
             {
                 product.Name = model.Name;
                 product.Price = model.Price;
             }
+        }
+
+        public void Delete(ProductBinding model)
+        {
+            context.Products.Clear();
         }
 
         private Product MapProduct(ProductBinding model)

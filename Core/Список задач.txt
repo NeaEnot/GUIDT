@@ -1,4 +1,4 @@
-﻿	Метод ListImplement.Implements.ProductLogic.Delete
+﻿>	Метод ListImplement.Implements.ProductLogic.Delete
 	Удаление Product по Id
 	Считывание OrderView.OrderProducts[].ProductName
 	Сохранение OrderProduct.Price в OrderLogic на основе Product.Price

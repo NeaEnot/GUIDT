@@ -36,7 +36,9 @@ namespace Test.ListImplementTest
                 Assert.Equal(10, list[0].Price);
             }
             finally
-            { }
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
@@ -59,7 +61,9 @@ namespace Test.ListImplementTest
                 Assert.Equal(10, list[0].Price);
             }
             finally
-            { }
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
@@ -82,7 +86,30 @@ namespace Test.ListImplementTest
                 Assert.Equal(20, list[0].Price);
             }
             finally
-            { }
+            { 
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestDelete()
+        {
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                ProductBinding model = new ProductBinding { Name = "Test", Price = 10 };
+                logic.Create(model);
+                logic.Delete(null);
+
+                List<ProductView> list = logic.Read(null);
+
+                Assert.Empty(list);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
     }
 }

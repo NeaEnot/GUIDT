@@ -7,17 +7,20 @@ namespace ListImplement
     {
         private static ContextSingleton instance;
 
-        public List<Order> Orders { get; set; }
+        internal List<Order> Orders { get; set; }
 
-        public List<OrderProduct> OrderProducts { get; set; }
+        internal List<OrderProduct> OrderProducts { get; set; }
+
+        internal List<Product> Products { get; set; }
 
         private ContextSingleton()
         {
             Orders = new List<Order>();
             OrderProducts = new List<OrderProduct>();
+            Products = new List<Product>();
         }
 
-        public static ContextSingleton GetInstance()
+        internal static ContextSingleton GetInstance()
         {
             if (instance == null)
             {
