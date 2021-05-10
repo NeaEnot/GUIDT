@@ -100,5 +100,20 @@ namespace Test.ListImplementTest
 
             logic.Delete(null);
         }
+
+        [Fact]
+        public void TestReadSingle()
+        {
+            OrderLogic logic = new OrderLogic();
+            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
+            logic.Create(model1);
+            logic.Create(model2);
+
+            List<OrderView> list = logic.Read(model1);
+
+            Assert.Single(list);
+            Assert.Equal(1, list[0].Id);
+        }
     }
 }

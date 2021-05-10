@@ -24,6 +24,7 @@ namespace ListImplement.Implements
         {
             return 
                 context.Orders
+                .Where(rec => model == null || rec.Id == model.Id)
                 .Select(rec => MapOrderView(rec))
                 .ToList();
         }

@@ -1,6 +1,5 @@
 ﻿	Метод ListImplement.Implements.OrderLogic.Update
 	Самостоятельное выставление Id для Order
-	Считывание Order по Id
 	Метод ListImplement.Implements.ProductLogic.Create
 	Метод ListImplement.Implements.ProductLogic.Read
 	Метод ListImplement.Implements.ProductLogic.Update
@@ -38,3 +37,4 @@
 Метод ListImplement.Implements.OrderLogic.Delete
 Удаление Order по Id
 Удаление OrderProduct при удалении Order
+Считывание Order по Id
