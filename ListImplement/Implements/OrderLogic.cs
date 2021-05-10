@@ -12,7 +12,7 @@ namespace ListImplement.Implements
 
         public void Create(OrderBinding model)
         {
-            context.Orders.Add(new Order { Id = model.Id });
+            context.Orders.Add(new Order { Id = context.Orders.Count > 0 ? context.Orders.Max(rec => rec.Id) + 1 : 1 });
 
             foreach (OrderProductBinding orderProduct in model.OrderProducts)
             {
