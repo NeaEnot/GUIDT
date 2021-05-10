@@ -9,9 +9,12 @@ namespace ListImplement
 
         public List<Order> Orders { get; set; }
 
+        public List<OrderProduct> OrderProducts { get; set; }
+
         private ContextSingleton()
         {
             Orders = new List<Order>();
+            OrderProducts = new List<OrderProduct>();
         }
 
         public static ContextSingleton GetInstance()

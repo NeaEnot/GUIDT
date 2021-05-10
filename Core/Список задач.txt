@@ -1,10 +1,14 @@
-﻿	Создание OrderProducts при ListImplement.Implements.OrderLogic.Create
-	Метод ListImplement.Implements.OrderLogic.Update
+﻿	Метод ListImplement.Implements.OrderLogic.Update
 	Метод ListImplement.Implements.OrderLogic.Delete
+	Самостоятельное выставление Id
+	Считывание по Id
 	Метод ListImplement.Implements.ProductLogic.Create
 	Метод ListImplement.Implements.ProductLogic.Read
 	Метод ListImplement.Implements.ProductLogic.Update
 	Метод ListImplement.Implements.ProductLogic.Delete
+	Самостоятельное выставление Id
+	Считывание по Id
+	Считывание OrderView.OrderProducts[].ProductName
 	Создать GuiDriver
 	Класс для просмотра всех заказов
 	Класс для создания заказа
@@ -30,3 +34,4 @@
 -
 Метод ListImplement.Implements.OrderLogic.Read
 Метод ListImplement.Implements.OrderLogic.Create
+Создание OrderProducts при ListImplement.Implements.OrderLogic.Create

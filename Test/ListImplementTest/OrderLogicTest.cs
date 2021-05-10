@@ -29,5 +29,20 @@ namespace Test.ListImplementTest
             Assert.Single(list);
             Assert.Equal(1, list[0].Id);
         }
+
+        [Fact]
+        public void TestCreateWithOrderProducts()
+        {
+            OrderLogic logic = new OrderLogic();
+            OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            model.OrderProducts.Add(new OrderProductBinding { Id = 1, Count = 10, OrderId = 1, Price = 10, ProductId = 1 });
+            model.OrderProducts.Add(new OrderProductBinding { Id = 2, Count = 13, OrderId = 1, Price = 5, ProductId = 2 });
+            logic.Create(model);
+
+            List<OrderView> list = logic.Read(null);
+
+            Assert.Equal(2, list[0].OrderProducts.Count);
+            Assert.Equal(5, list[0].OrderProducts[1].Price);
+        }
     }
 }
