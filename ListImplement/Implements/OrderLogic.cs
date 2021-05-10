@@ -13,6 +13,7 @@ namespace ListImplement.Implements
         public void Create(OrderBinding model)
         {
             context.Orders.Add(new Order { Id = model.Id });
+
             foreach (OrderProductBinding orderProduct in model.OrderProducts)
             {
                 context.OrderProducts.Add(MapOrderProduct(orderProduct));
@@ -30,9 +31,11 @@ namespace ListImplement.Implements
         public void Delete(OrderBinding model)
         {
             List<Order> orders = context.Orders.Where(rec => model == null || rec.Id == model.Id).ToList();
+
             foreach (Order order in orders)
             {
                 context.Orders.Remove(order);
+                context.OrderProducts.RemoveAll(rec => rec.OrderId == order.Id);
             }
         }
 
