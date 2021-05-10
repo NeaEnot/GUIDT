@@ -252,5 +252,37 @@ namespace Test.ListImplementTest
                 logic.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestUpdateSeveralOPWithSameProductId()
+        {
+            OrderLogic logic = new OrderLogic();
+
+            try
+            {
+                OrderBinding model = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
+                model.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 3 });
+                logic.Create(model);
+                OrderView ov = logic.Read(null)[0];
+                OrderBinding model2 = new OrderBinding { Id = ov.Id, OrderProducts = new List<OrderProductBinding>() };
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 3 });
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 2 });
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 2, Count = 1 });
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 2, Count = 5 });
+                logic.Update(model2);
+
+                List<OrderView> list = logic.Read(null);
+
+                Assert.Equal(2, list[0].OrderProducts.Count);
+                Assert.Equal(1, list[0].OrderProducts[0].ProductId);
+                Assert.Equal(5, list[0].OrderProducts[0].Count);
+                Assert.Equal(2, list[0].OrderProducts[1].ProductId);
+                Assert.Equal(6, list[0].OrderProducts[1].Count);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
     }
 }

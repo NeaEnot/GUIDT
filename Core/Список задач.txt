@@ -1,5 +1,4 @@
-﻿>	Несколько OrderProduct с одинаковым ProductId при обновлении
-	Метод ListImplement.Implements.ProductLogic.Create
+﻿	Метод ListImplement.Implements.ProductLogic.Create
 	Самостоятельное выставление Id для Product
 	Метод ListImplement.Implements.ProductLogic.Read
 	Считывание Product по Id
@@ -42,3 +41,4 @@
 Метод ListImplement.Implements.OrderLogic.Update
 -
 Несколько OrderProduct с одинаковым ProductId при создании
+Несколько OrderProduct с одинаковым ProductId при обновлении

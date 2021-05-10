@@ -43,26 +43,25 @@ namespace ListImplement.Implements
                 return;
             }
 
-            List<int> ids = new List<int>();
+            List<int> productIds = model.OrderProducts.GroupBy(rec => rec.ProductId).Select(rec => rec.Key).ToList();
 
-            foreach (OrderProductBinding op in model.OrderProducts)
+            foreach (int productId in productIds)
             {
-                OrderProduct orderProduct = context.OrderProducts.FirstOrDefault(rec => rec.OrderId == order.Id && rec.ProductId == op.ProductId);
+                OrderProduct orderProduct = context.OrderProducts.FirstOrDefault(rec => rec.OrderId == order.Id && rec.ProductId == productId);
+                List<OrderProductBinding> orderProducts = model.OrderProducts.Where(rec => rec.ProductId == productId).ToList();
+                OrderProduct newOrderProduct = MapOrderProducts(orderProducts, order.Id);
                 if (orderProduct == null)
                 {
-                    context.OrderProducts.Add(MapOrderProduct(op, order.Id));
+                    context.OrderProducts.Add(newOrderProduct);
                 }
                 else
                 {
-                    orderProduct.ProductId = op.ProductId;
-                    orderProduct.Count = op.Count;
-                    orderProduct.Price = op.Price;
+                    orderProduct.Count = newOrderProduct.Count;
+                    orderProduct.Price = newOrderProduct.Price;
                 }
-
-                ids.Add(op.ProductId);
             }
 
-            context.OrderProducts.RemoveAll(rec => rec.OrderId == order.Id && !ids.Contains(rec.ProductId));
+            context.OrderProducts.RemoveAll(rec => rec.OrderId == order.Id && !productIds.Contains(rec.ProductId));
         }
 
         public void Delete(OrderBinding model)
