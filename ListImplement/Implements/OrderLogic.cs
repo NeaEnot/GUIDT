@@ -50,6 +50,7 @@ namespace ListImplement.Implements
                 OrderProduct orderProduct = context.OrderProducts.FirstOrDefault(rec => rec.OrderId == order.Id && rec.ProductId == productId);
                 List<OrderProductBinding> orderProducts = model.OrderProducts.Where(rec => rec.ProductId == productId).ToList();
                 OrderProduct newOrderProduct = MapOrderProducts(orderProducts, order.Id);
+
                 if (orderProduct == null)
                 {
                     context.OrderProducts.Add(newOrderProduct);
@@ -85,19 +86,6 @@ namespace ListImplement.Implements
                     ProductId = orderProducts[0].ProductId,
                     Count = orderProducts.Sum(rec => rec.Count),
                     Price = orderProducts[0].Price
-                };
-        }
-
-        private OrderProduct MapOrderProduct(OrderProductBinding orderProduct, int orderId)
-        {
-            return
-                new OrderProduct
-                {
-                    Id = context.OrderProducts.Count > 0 ? context.OrderProducts.Max(rec => rec.Id) + 1 : 1,
-                    OrderId = orderId,
-                    ProductId = orderProduct.ProductId,
-                    Count = orderProduct.Count,
-                    Price = orderProduct.Price
                 };
         }
 
