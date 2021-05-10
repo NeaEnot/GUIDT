@@ -16,39 +16,49 @@ namespace Test.ListImplementTest
             List<OrderView> list = logic.Read(null);
 
             Assert.Empty(list);
-
-            logic.Delete(null);
         }
 
         [Fact]
         public void TestCreate()
         {
             OrderLogic logic = new OrderLogic();
-            logic.Create(new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() });
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                logic.Create(new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() });
 
-            Assert.Single(list);
-            Assert.Equal(1, list[0].Id);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Single(list);
+                Assert.Equal(1, list[0].Id);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
         public void TestCreateWithOrderProducts()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            model.OrderProducts.Add(new OrderProductBinding { Id = 1, Count = 10, OrderId = 1, Price = 10, ProductId = 1 });
-            model.OrderProducts.Add(new OrderProductBinding { Id = 2, Count = 13, OrderId = 1, Price = 5, ProductId = 2 });
-            logic.Create(model);
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                model.OrderProducts.Add(new OrderProductBinding { Id = 1, Count = 10, OrderId = 1, Price = 10, ProductId = 1 });
+                model.OrderProducts.Add(new OrderProductBinding { Id = 2, Count = 13, OrderId = 1, Price = 5, ProductId = 2 });
+                logic.Create(model);
 
-            Assert.Equal(2, list[0].OrderProducts.Count);
-            Assert.Equal(5, list[0].OrderProducts[1].Price);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Equal(2, list[0].OrderProducts.Count);
+                Assert.Equal(5, list[0].OrderProducts[1].Price);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
@@ -68,95 +78,155 @@ namespace Test.ListImplementTest
         public void TestDeleteSingle()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
-            logic.Create(model1);
-            logic.Create(model2);
-            logic.Delete(model1);
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
+                logic.Create(model1);
+                logic.Create(model2);
+                logic.Delete(model1);
 
-            Assert.Single(list);
-            Assert.Equal(2, list[0].Id);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Single(list);
+                Assert.Equal(2, list[0].Id);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
         public void TestDeleteOrderProducts()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-            logic.Create(model1);
-            logic.Delete(model1);
-            OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            model2.OrderProducts.Add(new OrderProductBinding { Id = 2, OrderId = 1 });
-            logic.Create(model2);
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+                logic.Create(model1);
+                logic.Delete(model1);
+                OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                model2.OrderProducts.Add(new OrderProductBinding { Id = 2, OrderId = 1 });
+                logic.Create(model2);
 
-            Assert.Single(list[0].OrderProducts);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Single(list[0].OrderProducts);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
         public void TestReadSingle()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
-            logic.Create(model1);
-            logic.Create(model2);
 
-            List<OrderView> list = logic.Read(model1);
+            try
+            {
+                OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
+                logic.Create(model1);
+                logic.Create(model2);
 
-            Assert.Single(list);
-            Assert.Equal(1, list[0].Id);
+                List<OrderView> list = logic.Read(model1);
 
-            logic.Delete(null);
+                Assert.Single(list);
+                Assert.Equal(1, list[0].Id);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
         public void TestOrderAutoId()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            logic.Create(model1);
-            logic.Create(model2);
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                logic.Create(model1);
+                logic.Create(model2);
 
-            Assert.Equal(1, list[0].Id);
-            Assert.Equal(2, list[1].Id);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Equal(1, list[0].Id);
+                Assert.Equal(2, list[1].Id);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
         public void TestOrderProductAutoId()
         {
             OrderLogic logic = new OrderLogic();
-            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-            model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-            model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-            model2.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-            logic.Create(model1);
-            logic.Create(model2);
 
-            List<OrderView> list = logic.Read(null);
+            try
+            {
+                OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+                model2.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+                logic.Create(model1);
+                logic.Create(model2);
 
-            Assert.Equal(1, list[0].OrderProducts[0].Id);
-            Assert.Equal(2, list[0].OrderProducts[1].Id);
-            Assert.Equal(3, list[1].OrderProducts[0].Id);
-            Assert.Equal(1, list[0].OrderProducts[0].OrderId);
-            Assert.Equal(1, list[0].OrderProducts[1].OrderId);
-            Assert.Equal(2, list[1].OrderProducts[0].OrderId);
+                List<OrderView> list = logic.Read(null);
 
-            logic.Delete(null);
+                Assert.Equal(1, list[0].OrderProducts[0].Id);
+                Assert.Equal(2, list[0].OrderProducts[1].Id);
+                Assert.Equal(3, list[1].OrderProducts[0].Id);
+                Assert.Equal(1, list[0].OrderProducts[0].OrderId);
+                Assert.Equal(1, list[0].OrderProducts[1].OrderId);
+                Assert.Equal(2, list[1].OrderProducts[0].OrderId);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestUpdate()
+        {
+            OrderLogic logic = new OrderLogic();
+
+            try
+            {
+                OrderBinding model = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
+                model.OrderProducts.Add(new OrderProductBinding { ProductId = 2, Count = 3 });
+                logic.Create(model);
+                OrderView ov = logic.Read(null)[0];
+                OrderBinding model2 = new OrderBinding { Id = ov.Id, OrderProducts = new List<OrderProductBinding>() };
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 2, Count = 4 });
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 3, Count = 6 });
+                logic.Update(model2);
+
+                List<OrderView> list = logic.Read(null);
+
+                Assert.Equal(2, list[0].OrderProducts.Count);
+                Assert.Equal(2, list[0].OrderProducts[0].ProductId);
+                Assert.Equal(4, list[0].OrderProducts[0].Count);
+                Assert.Equal(3, list[0].OrderProducts[1].ProductId);
+                Assert.Equal(6, list[0].OrderProducts[1].Count);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
     }
 }
