@@ -1,5 +1,4 @@
-﻿	Считывание Product по Id
-	Метод ListImplement.Implements.ProductLogic.Update
+﻿	Метод ListImplement.Implements.ProductLogic.Update
 	Метод ListImplement.Implements.ProductLogic.Delete
 	Удаление Product по Id
 	Считывание OrderView.OrderProducts[].ProductName
@@ -42,3 +41,4 @@
 Метод ListImplement.Implements.ProductLogic.Read
 Метод ListImplement.Implements.ProductLogic.Create
 Самостоятельное выставление Id для Product
+Считывание Product по Id

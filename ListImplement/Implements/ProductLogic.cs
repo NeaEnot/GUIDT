@@ -21,6 +21,7 @@ namespace ListImplement.Implements
         {
             return
                 products
+                .Where(rec => model == null || rec.Id == model.Id)
                 .Select(rec => MapProductView(rec))
                 .ToList();
         }
