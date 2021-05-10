@@ -4,6 +4,7 @@ using ListImplement.Implements;
 using System.Collections.Generic;
 using Xunit;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace Test.ListImplementTest
 {
     public class OrderLogicTest
@@ -282,6 +283,31 @@ namespace Test.ListImplementTest
             finally
             {
                 logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestOrderProductName()
+        {
+            OrderLogic logicO = new OrderLogic();
+            ProductLogic logicP = new ProductLogic();
+
+            try
+            {
+                ProductBinding product = new ProductBinding { Name = "Test", Price = 20 };
+                OrderBinding order = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
+                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Price = 20, Count = 2 });
+                logicP.Create(product);
+                logicO.Create(order);
+
+                List<OrderView> list = logicO.Read(null);
+
+                Assert.Equal("Test", list[0].OrderProducts[0].ProductName);
+            }
+            finally
+            {
+                logicO.Delete(null);
+                logicP.Delete(null);
             }
         }
     }

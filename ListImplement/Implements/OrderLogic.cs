@@ -105,6 +105,8 @@ namespace ListImplement.Implements
 
         private OrderProductView MapOrderProductView(OrderProduct orderProduct)
         {
+            Product product = context.Products.FirstOrDefault(rec => rec.Id == orderProduct.ProductId);
+
             return
                 new OrderProductView
                 {
@@ -112,7 +114,8 @@ namespace ListImplement.Implements
                     OrderId = orderProduct.OrderId,
                     ProductId = orderProduct.ProductId,
                     Count = orderProduct.Count,
-                    Price = orderProduct.Price
+                    Price = orderProduct.Price,
+                    ProductName = product != null ? product.Name : "Undefined"
                 };
         }
     }

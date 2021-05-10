@@ -1,4 +1,6 @@
-﻿	Считывание OrderView.OrderProducts[].ProductName
+﻿	Удалить OrderBinding.Id
+	Удалить OrderBinding.OrderId
+	Считывание OrderView.OrderProducts[].ProductName при удалённом Product
 	Сохранение OrderProduct.Price в OrderLogic на основе Product.Price
 	Создать GuiDriver
 	Класс для просмотра всех заказов
@@ -32,7 +34,6 @@
 Самостоятельное выставление Id для Order
 Самостоятельное выставление Id для OrderProduct
 Метод ListImplement.Implements.OrderLogic.Update
--
 Несколько OrderProduct с одинаковым ProductId при создании
 Несколько OrderProduct с одинаковым ProductId при обновлении
 Метод ListImplement.Implements.ProductLogic.Read
@@ -42,3 +43,4 @@
 Метод ListImplement.Implements.ProductLogic.Update
 Метод ListImplement.Implements.ProductLogic.Delete
 Удаление Product по Id
+Считывание OrderView.OrderProducts[].ProductName
