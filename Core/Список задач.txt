@@ -1,4 +1,4 @@
-﻿	Метод ListImplement.Implements.OrderLogic.Create
+﻿	Создание OrderProducts при ListImplement.Implements.OrderLogic.Create
 	Метод ListImplement.Implements.OrderLogic.Update
 	Метод ListImplement.Implements.OrderLogic.Delete
 	Метод ListImplement.Implements.ProductLogic.Create
@@ -29,3 +29,4 @@
 Интерфейс IProductLogic
 -
 Метод ListImplement.Implements.OrderLogic.Read
+Метод ListImplement.Implements.OrderLogic.Create
