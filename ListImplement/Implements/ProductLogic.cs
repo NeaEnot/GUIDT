@@ -12,7 +12,9 @@ namespace ListImplement.Implements
 
         public void Create(ProductBinding model)
         {
-            products.Add(MapProduct(model));
+            Product product = MapProduct(model);
+            product.Id = products.Count > 0 ? products.Max(rec => rec.Id) + 1 : 1;
+            products.Add(product);
         }
 
         public List<ProductView> Read(ProductBinding model)
@@ -27,8 +29,7 @@ namespace ListImplement.Implements
         {
             return
                 new Product 
-                { 
-                    Id = model.Id, 
+                {
                     Name = model.Name, 
                     Price = model.Price 
                 };

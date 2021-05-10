@@ -25,7 +25,7 @@ namespace Test.ListImplementTest
 
             try
             {
-                ProductBinding model = new ProductBinding { Id = 1, Name = "Test", Price = 10 };
+                ProductBinding model = new ProductBinding { Name = "Test", Price = 10 };
                 logic.Create(model);
 
                 List<ProductView> list = logic.Read(null);
