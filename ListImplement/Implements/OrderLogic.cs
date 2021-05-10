@@ -29,7 +29,11 @@ namespace ListImplement.Implements
 
         public void Delete(OrderBinding model)
         {
-            context.Orders.Clear();
+            List<Order> orders = context.Orders.Where(rec => model == null || rec.Id == model.Id).ToList();
+            foreach (Order order in orders)
+            {
+                context.Orders.Remove(order);
+            }
         }
 
         private OrderProduct MapOrderProduct(OrderProductBinding orderProduct)

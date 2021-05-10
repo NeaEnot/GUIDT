@@ -52,16 +52,34 @@ namespace Test.ListImplementTest
         }
 
         [Fact]
-        public void TestDelete()
+        public void TestDeleteAll()
         {
             OrderLogic logic = new OrderLogic();
             OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
             logic.Create(model);
-            logic.Delete(model);
+            logic.Delete(null);
 
             List<OrderView> list = logic.Read(null);
 
             Assert.Empty(list);
+        }
+
+        [Fact]
+        public void TestDeleteSingle()
+        {
+            OrderLogic logic = new OrderLogic();
+            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            OrderBinding model2 = new OrderBinding { Id = 2, OrderProducts = new List<OrderProductBinding>() };
+            logic.Create(model1);
+            logic.Create(model2);
+            logic.Delete(model1);
+
+            List<OrderView> list = logic.Read(null);
+
+            Assert.Single(list);
+            Assert.Equal(2, list[0].Id);
+
+            logic.Delete(null);
         }
     }
 }
