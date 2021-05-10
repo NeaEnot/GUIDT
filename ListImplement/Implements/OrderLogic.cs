@@ -27,6 +27,11 @@ namespace ListImplement.Implements
                 .ToList();
         }
 
+        public void Delete(OrderBinding model)
+        {
+            context.Orders.Clear();
+        }
+
         private OrderProduct MapOrderProduct(OrderProductBinding orderProduct)
         {
             return

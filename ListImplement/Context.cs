@@ -5,7 +5,7 @@ namespace ListImplement
 {
     internal class ContextSingleton
     {
-        //private static ContextSingleton instance;
+        private static ContextSingleton instance;
 
         public List<Order> Orders { get; set; }
 
@@ -19,13 +19,13 @@ namespace ListImplement
 
         public static ContextSingleton GetInstance()
         {
-            return new ContextSingleton();
-            //if (instance == null)
-            //{
-            //    instance = new ContextSingleton();
-            //}
+            //return new ContextSingleton();
+            if (instance == null)
+            {
+                instance = new ContextSingleton();
+            }
 
-            //return instance;
+            return instance;
         }
     }
 }

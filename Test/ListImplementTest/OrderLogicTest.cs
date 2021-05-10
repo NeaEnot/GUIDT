@@ -9,13 +9,15 @@ namespace Test.ListImplementTest
     public class OrderLogicTest
     {
         [Fact]
-        public void TestRead()
+        public void TestReadEmpty()
         {
             OrderLogic logic = new OrderLogic();
 
             List<OrderView> list = logic.Read(null);
 
             Assert.Empty(list);
+
+            logic.Delete(null);
         }
 
         [Fact]
@@ -28,6 +30,8 @@ namespace Test.ListImplementTest
 
             Assert.Single(list);
             Assert.Equal(1, list[0].Id);
+
+            logic.Delete(null);
         }
 
         [Fact]
@@ -43,6 +47,21 @@ namespace Test.ListImplementTest
 
             Assert.Equal(2, list[0].OrderProducts.Count);
             Assert.Equal(5, list[0].OrderProducts[1].Price);
+
+            logic.Delete(null);
+        }
+
+        [Fact]
+        public void TestDelete()
+        {
+            OrderLogic logic = new OrderLogic();
+            OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            logic.Create(model);
+            logic.Delete(model);
+
+            List<OrderView> list = logic.Read(null);
+
+            Assert.Empty(list);
         }
     }
 }
