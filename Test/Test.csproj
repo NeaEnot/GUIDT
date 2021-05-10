@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\ListImplement\ListImplement.csproj" />
   </ItemGroup>
 
 </Project>

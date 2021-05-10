@@ -1,12 +1,10 @@
-﻿	Создать ListImplement
-	Метод OrderLogic.Create
-	Метод OrderLogic.Read
-	Метод OrderLogic.Update
-	Метод OrderLogic.Delete
-	Метод ProductLogic.Create
-	Метод ProductLogic.Read
-	Метод ProductLogic.Update
-	Метод ProductLogic.Delete
+﻿	Метод ListImplement.Implements.OrderLogic.Create
+	Метод ListImplement.Implements.OrderLogic.Update
+	Метод ListImplement.Implements.OrderLogic.Delete
+	Метод ListImplement.Implements.ProductLogic.Create
+	Метод ListImplement.Implements.ProductLogic.Read
+	Метод ListImplement.Implements.ProductLogic.Update
+	Метод ListImplement.Implements.ProductLogic.Delete
 	Создать GuiDriver
 	Класс для просмотра всех заказов
 	Класс для создания заказа
@@ -29,3 +27,5 @@
 Добавить поле ProductName в OrderProductView
 Интерфейс IOrderLogic
 Интерфейс IProductLogic
+-
+Метод ListImplement.Implements.OrderLogic.Read
