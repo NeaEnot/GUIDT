@@ -26,6 +26,16 @@ namespace ListImplement.Implements
                 .ToList();
         }
 
+        public void Update(ProductBinding model)
+        {
+            Product product = products.FirstOrDefault(rec => rec.Id == model.Id);
+            if (product != null)
+            {
+                product.Name = model.Name;
+                product.Price = model.Price;
+            }
+        }
+
         private Product MapProduct(ProductBinding model)
         {
             return
