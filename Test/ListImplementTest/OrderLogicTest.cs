@@ -134,5 +134,29 @@ namespace Test.ListImplementTest
 
             logic.Delete(null);
         }
+
+        [Fact]
+        public void TestOrderProductAutoId()
+        {
+            OrderLogic logic = new OrderLogic();
+            OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
+            model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+            model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+            model2.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+            logic.Create(model1);
+            logic.Create(model2);
+
+            List<OrderView> list = logic.Read(null);
+
+            Assert.Equal(1, list[0].OrderProducts[0].Id);
+            Assert.Equal(2, list[0].OrderProducts[1].Id);
+            Assert.Equal(3, list[1].OrderProducts[0].Id);
+            Assert.Equal(1, list[0].OrderProducts[0].OrderId);
+            Assert.Equal(1, list[0].OrderProducts[1].OrderId);
+            Assert.Equal(2, list[1].OrderProducts[0].OrderId);
+
+            logic.Delete(null);
+        }
     }
 }

@@ -12,11 +12,12 @@ namespace ListImplement.Implements
 
         public void Create(OrderBinding model)
         {
-            context.Orders.Add(new Order { Id = context.Orders.Count > 0 ? context.Orders.Max(rec => rec.Id) + 1 : 1 });
+            Order order = new Order { Id = context.Orders.Count > 0 ? context.Orders.Max(rec => rec.Id) + 1 : 1 };
+            context.Orders.Add(order);
 
             foreach (OrderProductBinding orderProduct in model.OrderProducts)
             {
-                context.OrderProducts.Add(MapOrderProduct(orderProduct));
+                context.OrderProducts.Add(MapOrderProduct(orderProduct, order.Id));
             }
         }
 
@@ -40,13 +41,13 @@ namespace ListImplement.Implements
             }
         }
 
-        private OrderProduct MapOrderProduct(OrderProductBinding orderProduct)
+        private OrderProduct MapOrderProduct(OrderProductBinding orderProduct, int orderId)
         {
             return
                 new OrderProduct
                 {
-                    Id = orderProduct.Id,
-                    OrderId = orderProduct.OrderId,
+                    Id = context.OrderProducts.Count > 0 ? context.OrderProducts.Max(rec => rec.Id) + 1 : 1,
+                    OrderId = orderId,
                     ProductId = orderProduct.ProductId,
                     Count = orderProduct.Count,
                     Price = orderProduct.Price
