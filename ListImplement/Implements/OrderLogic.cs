@@ -16,9 +16,12 @@ namespace ListImplement.Implements
             Order order = new Order { Id = context.Orders.Count > 0 ? context.Orders.Max(rec => rec.Id) + 1 : 1 };
             context.Orders.Add(order);
 
-            foreach (OrderProductBinding orderProduct in model.OrderProducts)
+            List<int> productIds = model.OrderProducts.GroupBy(rec => rec.ProductId).Select(rec => rec.Key).ToList();
+
+            foreach (int productId in productIds)
             {
-                context.OrderProducts.Add(MapOrderProduct(orderProduct, order.Id));
+                List<OrderProductBinding> orderProducts = model.OrderProducts.Where(rec => rec.ProductId == productId).ToList();
+                context.OrderProducts.Add(MapOrderProducts(orderProducts, order.Id));
             }
         }
 
@@ -71,6 +74,19 @@ namespace ListImplement.Implements
                 context.Orders.Remove(order);
                 context.OrderProducts.RemoveAll(rec => rec.OrderId == order.Id);
             }
+        }
+
+        private OrderProduct MapOrderProducts(List<OrderProductBinding> orderProducts, int orderId)
+        {
+            return
+                new OrderProduct
+                {
+                    Id = context.OrderProducts.Count > 0 ? context.OrderProducts.Max(rec => rec.Id) + 1 : 1,
+                    OrderId = orderId,
+                    ProductId = orderProducts[0].ProductId,
+                    Count = orderProducts.Sum(rec => rec.Count),
+                    Price = orderProducts[0].Price
+                };
         }
 
         private OrderProduct MapOrderProduct(OrderProductBinding orderProduct, int orderId)

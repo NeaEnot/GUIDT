@@ -178,9 +178,9 @@ namespace Test.ListImplementTest
             {
                 OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
                 OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
-                model2.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1, ProductId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1, ProductId = 2 });
+                model2.OrderProducts.Add(new OrderProductBinding { Id = 1, OrderId = 1, ProductId = 1 });
                 logic.Create(model1);
                 logic.Create(model2);
 
@@ -222,6 +222,30 @@ namespace Test.ListImplementTest
                 Assert.Equal(4, list[0].OrderProducts[0].Count);
                 Assert.Equal(3, list[0].OrderProducts[1].ProductId);
                 Assert.Equal(6, list[0].OrderProducts[1].Count);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestCreateSeveralOPWithSameProductId()
+        {
+            OrderLogic logic = new OrderLogic();
+
+            try
+            {
+                OrderBinding model = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
+                model.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 3 });
+                model.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 2 });
+                logic.Create(model);
+
+                List<OrderView> list = logic.Read(null);
+
+                Assert.Single(list[0].OrderProducts);
+                Assert.Equal(1, list[0].OrderProducts[0].ProductId);
+                Assert.Equal(5, list[0].OrderProducts[0].Count);
             }
             finally
             {
