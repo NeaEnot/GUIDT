@@ -38,7 +38,7 @@ namespace ListImplement.Implements
 
         public void Delete(ProductBinding model)
         {
-            context.Products.Clear();
+            context.Products.RemoveAll(rec => model == null || rec.Id == model.Id);
         }
 
         private Product MapProduct(ProductBinding model)

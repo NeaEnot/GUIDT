@@ -1,5 +1,4 @@
-﻿	Удаление Product по Id
-	Считывание OrderView.OrderProducts[].ProductName
+﻿	Считывание OrderView.OrderProducts[].ProductName
 	Сохранение OrderProduct.Price в OrderLogic на основе Product.Price
 	Создать GuiDriver
 	Класс для просмотра всех заказов
@@ -42,3 +41,4 @@
 Считывание Product по Id
 Метод ListImplement.Implements.ProductLogic.Update
 Метод ListImplement.Implements.ProductLogic.Delete
+Удаление Product по Id
