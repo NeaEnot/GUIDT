@@ -48,8 +48,8 @@ namespace Test.ListImplementTest
             try
             {
                 OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model.OrderProducts.Add(new OrderProductBinding { Count = 10, Price = 10, ProductId = 1 });
-                model.OrderProducts.Add(new OrderProductBinding { Count = 13, Price = 5, ProductId = 2 });
+                model.OrderProducts.Add(new OrderProductBinding { Count = 10, ProductId = 1 });
+                model.OrderProducts.Add(new OrderProductBinding { Count = 13, ProductId = 2 });
                 logicP.Create(new ProductBinding { Id = 1, Price = 10 });
                 logicP.Create(new ProductBinding { Id = 2, Price = 5 });
                 logicO.Create(model);
@@ -318,7 +318,7 @@ namespace Test.ListImplementTest
             {
                 ProductBinding product = new ProductBinding { Name = "Test", Price = 20 };
                 OrderBinding order = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
-                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Price = 20, Count = 2 });
+                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 2 });
                 logicP.Create(product);
                 logicO.Create(order);
 
@@ -343,7 +343,7 @@ namespace Test.ListImplementTest
             {
                 ProductBinding product = new ProductBinding { Name = "Test", Price = 20 };
                 OrderBinding order = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
-                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Price = 20, Count = 2 });
+                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 2 });
                 logicP.Create(product);
                 logicO.Create(order);
                 logicP.Delete(new ProductBinding { Id = 1 });

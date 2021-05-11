@@ -1,5 +1,4 @@
-﻿	Удалить OrderProductBinding.Price
-	Создать GuiDriver
+﻿	Создать GuiDriver
 	Класс для просмотра всех заказов
 	Класс для создания заказа
 	Класс для добавления продукта к заказу
@@ -46,3 +45,4 @@
 Удалить OrderProductBinding.OrderId
 Считывание OrderView.OrderProducts[].ProductName при удалённом Product
 Сохранение OrderProduct.Price в OrderLogic на основе Product.Price
+Удалить OrderProductBinding.Price

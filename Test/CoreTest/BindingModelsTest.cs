@@ -19,11 +19,10 @@ namespace Test.CoreTest
         [Fact]
         public void TestOrderProductBinding()
         {
-            OrderProductBinding opb = new OrderProductBinding { ProductId = 0, Count = 10, Price = 100 };
+            OrderProductBinding opb = new OrderProductBinding { ProductId = 0, Count = 10 };
 
             Assert.Equal(0, opb.ProductId);
             Assert.Equal(10, opb.Count);
-            Assert.Equal(100, opb.Price);
         }
 
         [Fact]
