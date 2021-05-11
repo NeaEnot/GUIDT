@@ -1,5 +1,4 @@
-﻿	Удалить OrderBinding.Id
-	Удалить OrderBinding.OrderId
+﻿	Удалить OrderProductBinding.OrderId
 	Считывание OrderView.OrderProducts[].ProductName при удалённом Product
 	Сохранение OrderProduct.Price в OrderLogic на основе Product.Price
 	Создать GuiDriver
@@ -44,3 +43,5 @@
 Метод ListImplement.Implements.ProductLogic.Delete
 Удаление Product по Id
 Считывание OrderView.OrderProducts[].ProductName
+-
+Удалить OrderProductBinding.Id
