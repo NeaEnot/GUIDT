@@ -2,6 +2,7 @@
 
 namespace Core.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class ColumnAttribute : Attribute
     {
         public ColumnAttribute(string title = "", bool visible = true)
