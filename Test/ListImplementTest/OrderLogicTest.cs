@@ -47,8 +47,8 @@ namespace Test.ListImplementTest
             try
             {
                 OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model.OrderProducts.Add(new OrderProductBinding { Count = 10, OrderId = 1, Price = 10, ProductId = 1 });
-                model.OrderProducts.Add(new OrderProductBinding { Count = 13, OrderId = 1, Price = 5, ProductId = 2 });
+                model.OrderProducts.Add(new OrderProductBinding { Count = 10, Price = 10, ProductId = 1 });
+                model.OrderProducts.Add(new OrderProductBinding { Count = 13, Price = 5, ProductId = 2 });
                 logic.Create(model);
 
                 List<OrderView> list = logic.Read(null);
@@ -107,11 +107,11 @@ namespace Test.ListImplementTest
             try
             {
                 OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model1.OrderProducts.Add(new OrderProductBinding { OrderId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding());
                 logic.Create(model1);
                 logic.Delete(model1);
                 OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model2.OrderProducts.Add(new OrderProductBinding { OrderId = 1 });
+                model2.OrderProducts.Add(new OrderProductBinding());
                 logic.Create(model2);
 
                 List<OrderView> list = logic.Read(null);
@@ -179,9 +179,9 @@ namespace Test.ListImplementTest
             {
                 OrderBinding model1 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
                 OrderBinding model2 = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
-                model1.OrderProducts.Add(new OrderProductBinding { OrderId = 1, ProductId = 1 });
-                model1.OrderProducts.Add(new OrderProductBinding { OrderId = 1, ProductId = 2 });
-                model2.OrderProducts.Add(new OrderProductBinding { OrderId = 1, ProductId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding { ProductId = 1 });
+                model1.OrderProducts.Add(new OrderProductBinding { ProductId = 2 });
+                model2.OrderProducts.Add(new OrderProductBinding { ProductId = 1 });
                 logic.Create(model1);
                 logic.Create(model2);
 

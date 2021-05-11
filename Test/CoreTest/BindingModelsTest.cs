@@ -19,9 +19,8 @@ namespace Test.CoreTest
         [Fact]
         public void TestOrderProductBinding()
         {
-            OrderProductBinding opb = new OrderProductBinding { OrderId = 0, ProductId = 0, Count = 10, Price = 100 };
+            OrderProductBinding opb = new OrderProductBinding { ProductId = 0, Count = 10, Price = 100 };
 
-            Assert.Equal(0, opb.OrderId);
             Assert.Equal(0, opb.ProductId);
             Assert.Equal(10, opb.Count);
             Assert.Equal(100, opb.Price);
@@ -31,8 +30,8 @@ namespace Test.CoreTest
         public void TestOrderBinding()
         {
             OrderBinding ob = new OrderBinding { Id = 0, OrderProducts = new List<OrderProductBinding>() };
-            ob.OrderProducts.Add(new OrderProductBinding { OrderId = 0, ProductId = 0, Count = 10 });
-            ob.OrderProducts.Add(new OrderProductBinding { OrderId = 0, ProductId = 1, Count = 5 });
+            ob.OrderProducts.Add(new OrderProductBinding { ProductId = 0, Count = 10 });
+            ob.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 5 });
 
             Assert.Equal(0, ob.Id);
             Assert.Equal(0, ob.OrderProducts[0].ProductId);
