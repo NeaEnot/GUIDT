@@ -1,8 +1,5 @@
-﻿using Core.Attributes;
-using Core.Models.View;
-using System;
+﻿using Core.Models.View;
 using System.Collections.Generic;
-using System.Reflection;
 using Xunit;
 
 namespace Test.CoreTest
@@ -45,25 +42,6 @@ namespace Test.CoreTest
             Assert.Equal(1, ov.OrderProducts[1].ProductId);
             Assert.Equal(10, ov.OrderProducts[0].Count);
             Assert.Equal(5, ov.OrderProducts[1].Count);
-        }
-
-        [Fact]
-        public void TestProductViewAttributes()
-        {
-            Type type = typeof(ProductView);
-            PropertyInfo propId = type.GetProperty("Id");
-            PropertyInfo propName = type.GetProperty("Name");
-            PropertyInfo propPrice = type.GetProperty("Price");
-            ColumnAttribute attrId = propId.GetCustomAttribute<ColumnAttribute>();
-            ColumnAttribute attrName = propName.GetCustomAttribute<ColumnAttribute>();
-            ColumnAttribute attrPrice = propPrice.GetCustomAttribute<ColumnAttribute>();
-
-            Assert.Equal("Номер", attrId.Title);
-            Assert.True(attrId.Visible);
-            Assert.Equal("Название", attrName.Title);
-            Assert.True(attrName.Visible);
-            Assert.Equal("Цена", attrPrice.Title);
-            Assert.True(attrPrice.Visible);
         }
     }
 }

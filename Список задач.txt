@@ -1,4 +1,4 @@
-﻿	Добавить атрибуты в OrderView
+﻿	Добавить атрибуты в OrderProductView
 	Создать GuiDriver
 	Класс контекста
 	Класс для просмотра всех заказов
@@ -47,7 +47,6 @@
 Метод ListImplement.Implements.ProductLogic.Delete
 Удаление Product по Id
 Считывание OrderView.OrderProducts[].ProductName
--
 Удалить OrderProductBinding.Id
 Удалить OrderProductBinding.OrderId
 Считывание OrderView.OrderProducts[].ProductName при удалённом Product
@@ -57,3 +56,4 @@
 Удаление GuiDriver.Models.OrdersResponse
 Создать атрибут для View моделей
 Добавить атрибуты в ProductView
+Добавить атрибуты в OrderView
