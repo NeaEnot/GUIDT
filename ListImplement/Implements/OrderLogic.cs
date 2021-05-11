@@ -85,7 +85,7 @@ namespace ListImplement.Implements
                     OrderId = orderId,
                     ProductId = orderProducts[0].ProductId,
                     Count = orderProducts.Sum(rec => rec.Count),
-                    Price = orderProducts[0].Price
+                    Price = context.Products.First(rec => rec.Id == orderProducts[0].ProductId).Price
                 };
         }
 
