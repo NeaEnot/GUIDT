@@ -1,5 +1,4 @@
-﻿	Создать атрибут для View моделей
-	Добавить атрибуты в OrderView
+﻿	Добавить атрибуты в OrderView
 	Добавить атрибуты в ProductView
 	Создать GuiDriver
 	Класс контекста
@@ -57,3 +56,4 @@
 Удалить OrderProductBinding.Price
 Модель для отображения всех заказов и конфигурирования таблицы
 Удаление GuiDriver.Models.OrdersResponse
+Создать атрибут для View моделей
