@@ -310,5 +310,31 @@ namespace Test.ListImplementTest
                 logicP.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestOrderProductUndefinedName()
+        {
+            OrderLogic logicO = new OrderLogic();
+            ProductLogic logicP = new ProductLogic();
+
+            try
+            {
+                ProductBinding product = new ProductBinding { Name = "Test", Price = 20 };
+                OrderBinding order = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
+                order.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Price = 20, Count = 2 });
+                logicP.Create(product);
+                logicO.Create(order);
+                logicP.Delete(new ProductBinding { Id = 1 });
+
+                List<OrderView> list = logicO.Read(null);
+
+                Assert.Equal("Undefined", list[0].OrderProducts[0].ProductName);
+            }
+            finally
+            {
+                logicO.Delete(null);
+                logicP.Delete(null);
+            }
+        }
     }
 }
