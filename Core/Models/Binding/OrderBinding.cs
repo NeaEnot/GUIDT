@@ -7,5 +7,10 @@ namespace Core.Models.Binding
         public int? Id { get; set; }
 
         public List<OrderProductBinding> OrderProducts { get; set; }
+
+        public OrderBinding()
+        {
+            OrderProducts = new List<OrderProductBinding>();
+        }
     }
 }

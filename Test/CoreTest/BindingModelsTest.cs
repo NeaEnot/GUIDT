@@ -38,5 +38,14 @@ namespace Test.CoreTest
             Assert.Equal(10, ob.OrderProducts[0].Count);
             Assert.Equal(5, ob.OrderProducts[1].Count);
         }
+
+        [Fact]
+        public void TestOrderBindingWithoutProps()
+        {
+            OrderBinding ob = new OrderBinding();
+
+            Assert.Null(ob.Id);
+            Assert.NotNull(ob.OrderProducts);
+        }
     }
 }
