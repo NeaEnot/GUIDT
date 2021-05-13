@@ -66,5 +66,21 @@ namespace Test.GuiDriverTest
                 orderLogic.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestMethodSelectedOrderView()
+        {
+            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(new OrderLogic(), new ProductLogic()));
+            List<OrderView> orders = new List<OrderView>();
+            orders.Add(new OrderView { Id = 1 });
+            orders.Add(new OrderView { Id = 2 });
+            orders.Add(new OrderView { Id = 3 });
+            orders.Add(new OrderView { Id = 4 });
+            driver.Selected = () => orders[2];
+
+            OrderView order = driver.Selected();
+
+            Assert.Equal(3, order.Id);
+        }
     }
 }

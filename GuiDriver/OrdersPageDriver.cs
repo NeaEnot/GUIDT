@@ -8,6 +8,9 @@ namespace GuiDriver
         public delegate void moveToOrderPage(GuiContext context, OrderView order);
         public moveToOrderPage MoveToOrderPage { private get; set; }
 
+        public delegate OrderView selected();
+        public selected Selected { get; set; }
+
         private GuiContext context;
 
         public OrdersPageDriver(GuiContext context)
