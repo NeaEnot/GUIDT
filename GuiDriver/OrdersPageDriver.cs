@@ -5,14 +5,16 @@ namespace GuiDriver
 {
     public class OrdersPageDriver
     {
+        private GuiContext context;
+
         public OrdersPageDriver(GuiContext context)
         {
-
+            this.context = context;
         }
 
         public List<OrderView> GetAllOrders()
         {
-            return new List<OrderView>();
+            return context.OrderLogic.Read(null);
         }
     }
 }
