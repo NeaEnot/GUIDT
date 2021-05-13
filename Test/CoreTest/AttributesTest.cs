@@ -75,5 +75,55 @@ namespace Test.CoreTest
             Assert.Equal("Сумма", attrSum.Title);
             Assert.True(attrSum.Visible);
         }
+
+        [Fact]
+        public void TestOrderProductViewColumnAttributes()
+        {
+            Type type = typeof(OrderProductView);
+            ColumnAttribute attrId = null;
+            ColumnAttribute attrOrderId = null;
+            ColumnAttribute attrProductId = null;
+            ColumnAttribute attrProductName = null;
+            ColumnAttribute attrCount = null;
+            ColumnAttribute attrPrice = null;
+
+            foreach (PropertyInfo prop in type.GetProperties().Where(rec => rec.GetCustomAttributes<ColumnAttribute>().Count() > 0))
+            {
+                switch (prop.Name)
+                {
+                    case "Id":
+                        attrId = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                    case "OrderId":
+                        attrOrderId = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                    case "ProductId":
+                        attrProductId = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                    case "ProductName":
+                        attrProductName = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                    case "Count":
+                        attrCount = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                    case "Price":
+                        attrPrice = prop.GetCustomAttribute<ColumnAttribute>();
+                        break;
+                }
+            }
+
+            Assert.Equal("Номер", attrId.Title);
+            Assert.False(attrId.Visible);
+            Assert.Equal("Номер заказа", attrOrderId.Title);
+            Assert.False(attrOrderId.Visible);
+            Assert.Equal("Номер продукта", attrProductId.Title);
+            Assert.False(attrProductId.Visible);
+            Assert.Equal("Продукт", attrProductName.Title);
+            Assert.True(attrProductName.Visible);
+            Assert.Equal("Количество", attrCount.Title);
+            Assert.True(attrCount.Visible);
+            Assert.Equal("Цена шт.", attrPrice.Title);
+            Assert.True(attrPrice.Visible);
+        }
     }
 }
