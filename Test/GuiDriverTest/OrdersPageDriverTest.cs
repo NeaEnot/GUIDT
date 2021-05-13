@@ -39,5 +39,32 @@ namespace Test.GuiDriverTest
                 orderLogic.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestMethodMoveToOrderPage()
+        {
+            OrderLogic orderLogic = new OrderLogic();
+            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(new OrderLogic(), new ProductLogic()));
+
+            try
+            {
+                driver.MoveToOrderPage =
+                    (context, order) =>
+                    {
+                        orderLogic.Create(new OrderBinding());
+                        orderLogic.Create(new OrderBinding());
+                    };
+                driver.AddOrder();
+                driver.AddOrder();
+
+                List<OrderView> list = driver.GetAllOrders();
+
+                Assert.Equal(4, list.Count);
+            }
+            finally
+            {
+                orderLogic.Delete(null);
+            }
+        }
     }
 }

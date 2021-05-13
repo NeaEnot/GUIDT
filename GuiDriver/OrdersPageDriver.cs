@@ -5,6 +5,9 @@ namespace GuiDriver
 {
     public class OrdersPageDriver
     {
+        public delegate void moveToOrderPage(GuiContext context, OrderView order);
+        public moveToOrderPage MoveToOrderPage { private get; set; }
+
         private GuiContext context;
 
         public OrdersPageDriver(GuiContext context)
@@ -15,6 +18,11 @@ namespace GuiDriver
         public List<OrderView> GetAllOrders()
         {
             return context.OrderLogic.Read(null);
+        }
+
+        public void AddOrder()
+        {
+            MoveToOrderPage(context, null);
         }
     }
 }
