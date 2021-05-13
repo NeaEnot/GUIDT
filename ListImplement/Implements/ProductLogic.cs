@@ -1,4 +1,5 @@
-﻿using Core.Models.Binding;
+﻿using Core.Interfaces;
+using Core.Models.Binding;
 using Core.Models.View;
 using ListImplement.Models;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace ListImplement.Implements
 {
-    public class ProductLogic
+    public class ProductLogic: IProductLogic
     {
         private ContextSingleton context = ContextSingleton.GetInstance();
 

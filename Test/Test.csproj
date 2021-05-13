@@ -25,8 +25,4 @@
     <ProjectReference Include="..\ListImplement\ListImplement.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="GuiDriverTest\" />
-  </ItemGroup>
-
 </Project>
