@@ -2,18 +2,16 @@
 
 namespace GuiDriver
 {
-    public class GuiContext<O, P> 
-        where O: IOrderLogic, new()
-        where P: IProductLogic, new()
+    public class GuiContext
     {
         public IOrderLogic OrderLogic { get; private set; }
 
         public IProductLogic ProductLogic { get; private set; }
 
-        public GuiContext()
+        public GuiContext(IOrderLogic orderLogic, IProductLogic productLogic)
         {
-            OrderLogic = new O();
-            ProductLogic = new P();
+            OrderLogic = orderLogic;
+            ProductLogic = productLogic;
         }
     }
 }

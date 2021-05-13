@@ -10,7 +10,7 @@ namespace Test.GuiDriverTest
         [Fact]
         public void TestGuiContext()
         {
-            GuiContext<OrderLogic, ProductLogic> context = new GuiContext<OrderLogic, ProductLogic>();
+            GuiContext context = new GuiContext(new OrderLogic(), new ProductLogic());
 
             IOrderLogic logicO = context.OrderLogic;
             IProductLogic logicP = context.ProductLogic;
