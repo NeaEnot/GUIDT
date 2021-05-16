@@ -8,6 +8,7 @@ namespace UiDriver
     {
         #region delegates
         public delegate void moveToOrderPage(UiContext context, OrderView order);
+        public delegate void moveToProductsPage();
         public delegate OrderView selected();
         #endregion
 
@@ -16,6 +17,10 @@ namespace UiDriver
         /// Тут необходимо указать, например, функцию открытия нового окна
         /// </summary>
         public moveToOrderPage MoveToOrderPage { private get; set; }
+        /// <summary>
+        /// Тут необходимо указать, например, функцию открытия нового окна
+        /// </summary>
+        public moveToProductsPage MoveToProductsPage { private get; set; }
         public selected Selected { private get; set; }
         #endregion
 
@@ -44,6 +49,11 @@ namespace UiDriver
         public void DeleteOrder()
         {
             context.OrderLogic.Delete(new OrderBinding { Id = Selected().Id });
+        }
+
+        public void ToProducts()
+        {
+            MoveToProductsPage();
         }
     }
 }

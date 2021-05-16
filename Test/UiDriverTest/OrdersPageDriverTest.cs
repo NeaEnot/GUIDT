@@ -105,5 +105,22 @@ namespace Test.UiDriverTest
 
             Assert.Equal("!!!!!!", msg);
         }
+
+        [Fact]
+        public void TestMethodMoveToProductsPage()
+        {
+            string msg = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+            driver.MoveToProductsPage =
+                () =>
+                {
+                    msg = "!";
+                };
+
+            driver.ToProducts();
+
+            Assert.Equal("!", msg);
+        }
     }
 }
