@@ -1,6 +1,4 @@
 ﻿	Создать UiDriver
->	Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
-	Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
 	Класс для создания заказа
 	Кнопка сохранения заказа
 	Класс для добавления продукта к заказу
@@ -74,8 +72,8 @@ OrdersPageDriver показ информационных сообщений
 OrdersPageDriver вывод сообщения об ошибке при отсутствии выделенного элемента
 OrdersPageDriver вывод сообщения об ошибке при чтении всех заказов
 - OrdersPageDriver вывод сообщения об удалении заказа
-- 
-- 
+- Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
+- Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
 - 
 - 
 - 
