@@ -5,7 +5,7 @@ using ListImplement.Implements;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Test.GuiDriverTest
+namespace Test.UiDriverTest
 {
     public class OrdersPageDriverTest
     {
@@ -81,6 +81,32 @@ namespace Test.GuiDriverTest
             OrderView order = driver.Selected();
 
             Assert.Equal(3, order.Id);
+        }
+
+        [Fact]
+        public void TestMethodDelete()
+        {
+            OrderLogic orderLogic = new OrderLogic();
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+            try
+            {
+                orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
+                orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
+                orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
+                driver.Selected = () => orderLogic.Read(null)[1];
+                driver.DeleteOrder();
+
+                List<OrderView> list = driver.GetAllOrders();
+
+                Assert.Equal(2, list.Count);
+                Assert.Equal(1, list[0].Id);
+                Assert.Equal(3, list[1].Id);
+            }
+            finally
+            {
+                orderLogic.Delete(null);
+            }
         }
     }
 }

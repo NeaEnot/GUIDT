@@ -3,7 +3,7 @@ using UiDriver;
 using ListImplement.Implements;
 using Xunit;
 
-namespace Test.GuiDriverTest
+namespace Test.UiDriverTest
 {
     public class UiContextTest
     {

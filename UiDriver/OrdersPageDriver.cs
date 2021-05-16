@@ -1,15 +1,20 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using System.Collections.Generic;
 
 namespace UiDriver
 {
     public class OrdersPageDriver
     {
+        #region delegates
         public delegate void moveToOrderPage(UiContext context, OrderView order);
-        public moveToOrderPage MoveToOrderPage { private get; set; }
-
         public delegate OrderView selected();
+        #endregion
+
+        #region сustomizableMethods
+        public moveToOrderPage MoveToOrderPage { private get; set; }
         public selected Selected { get; set; }
+        #endregion
 
         private UiContext context;
 
@@ -26,6 +31,11 @@ namespace UiDriver
         public void AddOrder()
         {
             MoveToOrderPage(context, null);
+        }
+
+        public void DeleteOrder()
+        {
+            context.OrderLogic.Delete(new OrderBinding { Id = Selected().Id });
         }
     }
 }
