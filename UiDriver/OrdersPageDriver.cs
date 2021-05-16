@@ -16,7 +16,7 @@ namespace UiDriver
         /// Тут необходимо указать, например, функцию открытия нового окна
         /// </summary>
         public moveToOrderPage MoveToOrderPage { private get; set; }
-        public selected Selected { get; set; }
+        public selected Selected { private get; set; }
         #endregion
 
         private UiContext context;
