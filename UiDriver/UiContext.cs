@@ -1,14 +1,14 @@
 ﻿using Core.Interfaces;
 
-namespace GuiDriver
+namespace UiDriver
 {
-    public class GuiContext
+    public class UiContext
     {
         public IOrderLogic OrderLogic { get; private set; }
 
         public IProductLogic ProductLogic { get; private set; }
 
-        public GuiContext(IOrderLogic orderLogic, IProductLogic productLogic)
+        public UiContext(IOrderLogic orderLogic, IProductLogic productLogic)
         {
             OrderLogic = orderLogic;
             ProductLogic = productLogic;

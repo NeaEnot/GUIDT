@@ -21,8 +21,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\GuiDriver\GuiDriver.csproj" />
+    <ProjectReference Include="..\GuiDriver\UiDriver.csproj" />
     <ProjectReference Include="..\ListImplement\ListImplement.csproj" />
+    <ProjectReference Include="..\UiDriver\UiDriver.csproj" />
   </ItemGroup>
 
 </Project>

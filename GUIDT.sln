@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListImplement", "ListImplement\ListImplement.csproj", "{F2EC80B9-F339-4B60-A800-29E960B07BCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms", "WinForms\WinForms.csproj", "{0D78FCD2-05ED-4A05-ACC8-835393CD4EC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms", "WinForms\WinForms.csproj", "{0D78FCD2-05ED-4A05-ACC8-835393CD4EC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiDriver", "GuiDriver\GuiDriver.csproj", "{72929303-EC10-4E82-99ED-3E60589DFEF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiDriver", "UiDriver\UiDriver.csproj", "{72929303-EC10-4E82-99ED-3E60589DFEF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,16 +1,16 @@
 ﻿using Core.Interfaces;
-using GuiDriver;
+using UiDriver;
 using ListImplement.Implements;
 using Xunit;
 
 namespace Test.GuiDriverTest
 {
-    public class GuiContextTest
+    public class UiContextTest
     {
         [Fact]
         public void TestGuiContext()
         {
-            GuiContext context = new GuiContext(new OrderLogic(), new ProductLogic());
+            UiContext context = new UiContext(new OrderLogic(), new ProductLogic());
 
             IOrderLogic logicO = context.OrderLogic;
             IProductLogic logicP = context.ProductLogic;

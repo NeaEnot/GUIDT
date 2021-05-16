@@ -1,6 +1,6 @@
 ﻿using Core.Models.Binding;
 using Core.Models.View;
-using GuiDriver;
+using UiDriver;
 using ListImplement.Implements;
 using System.Collections.Generic;
 using Xunit;
@@ -12,7 +12,7 @@ namespace Test.GuiDriverTest
         [Fact]
         public void TestOrdersListEmpty()
         {
-            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(new OrderLogic(), new ProductLogic()));
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
             List<OrderView> list = driver.GetAllOrders();
 
@@ -23,7 +23,7 @@ namespace Test.GuiDriverTest
         public void TestOrdersListNotEmpty()
         {
             OrderLogic orderLogic = new OrderLogic();
-            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(orderLogic, new ProductLogic()));
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(orderLogic, new ProductLogic()));
 
             try
             {
@@ -44,7 +44,7 @@ namespace Test.GuiDriverTest
         public void TestMethodMoveToOrderPage()
         {
             OrderLogic orderLogic = new OrderLogic();
-            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(new OrderLogic(), new ProductLogic()));
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
             try
             {
@@ -70,7 +70,7 @@ namespace Test.GuiDriverTest
         [Fact]
         public void TestMethodSelectedOrderView()
         {
-            OrdersPageDriver driver = new OrdersPageDriver(new GuiContext(new OrderLogic(), new ProductLogic()));
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
             List<OrderView> orders = new List<OrderView>();
             orders.Add(new OrderView { Id = 1 });
             orders.Add(new OrderView { Id = 2 });

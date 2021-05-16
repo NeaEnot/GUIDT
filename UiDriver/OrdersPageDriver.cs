@@ -1,19 +1,19 @@
 ﻿using Core.Models.View;
 using System.Collections.Generic;
 
-namespace GuiDriver
+namespace UiDriver
 {
     public class OrdersPageDriver
     {
-        public delegate void moveToOrderPage(GuiContext context, OrderView order);
+        public delegate void moveToOrderPage(UiContext context, OrderView order);
         public moveToOrderPage MoveToOrderPage { private get; set; }
 
         public delegate OrderView selected();
         public selected Selected { get; set; }
 
-        private GuiContext context;
+        private UiContext context;
 
-        public OrdersPageDriver(GuiContext context)
+        public OrdersPageDriver(UiContext context)
         {
             this.context = context;
         }
