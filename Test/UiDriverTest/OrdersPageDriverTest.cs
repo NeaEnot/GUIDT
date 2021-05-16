@@ -54,9 +54,9 @@ namespace Test.UiDriverTest
                         orderLogic.Create(new OrderBinding());
                         orderLogic.Create(new OrderBinding());
                     };
-                driver.AddOrder();
-                driver.AddOrder();
 
+                driver.AddOrder();
+                driver.AddOrder();
                 List<OrderView> list = driver.GetAllOrders();
 
                 Assert.Equal(4, list.Count);
@@ -76,8 +76,8 @@ namespace Test.UiDriverTest
             orders.Add(new OrderView { Id = 2 });
             orders.Add(new OrderView { Id = 3 });
             orders.Add(new OrderView { Id = 4 });
-            driver.Selected = () => orders[2];
 
+            driver.Selected = () => orders[2];
             OrderView order = driver.Selected();
 
             Assert.Equal(3, order.Id);
@@ -95,13 +95,43 @@ namespace Test.UiDriverTest
                 orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
                 orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
                 driver.Selected = () => orderLogic.Read(null)[1];
-                driver.DeleteOrder();
 
+                driver.DeleteOrder();
                 List<OrderView> list = driver.GetAllOrders();
 
                 Assert.Equal(2, list.Count);
                 Assert.Equal(1, list[0].Id);
                 Assert.Equal(3, list[1].Id);
+            }
+            finally
+            {
+                orderLogic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestMethodUpdate()
+        {
+            OrderLogic orderLogic = new OrderLogic();
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+            try
+            {
+                driver.MoveToOrderPage =
+                    (context, order) =>
+                    {
+                        for (int i = 0; i < order.Id; i++)
+                        {
+                            orderLogic.Create(new OrderBinding());
+                        }
+                    };
+                driver.Selected = () => new OrderView { Id = 3 };
+
+                driver.UpdateOrder();
+                driver.UpdateOrder();
+                List<OrderView> list = driver.GetAllOrders();
+
+                Assert.Equal(6, list.Count);
             }
             finally
             {

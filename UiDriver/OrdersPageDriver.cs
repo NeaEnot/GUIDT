@@ -12,6 +12,9 @@ namespace UiDriver
         #endregion
 
         #region сustomizableMethods
+        /// <summary>
+        /// Тут необходимо указать, например, функцию открытия нового окна
+        /// </summary>
         public moveToOrderPage MoveToOrderPage { private get; set; }
         public selected Selected { get; set; }
         #endregion
@@ -31,6 +34,11 @@ namespace UiDriver
         public void AddOrder()
         {
             MoveToOrderPage(context, null);
+        }
+
+        public void UpdateOrder()
+        {
+            MoveToOrderPage(context, Selected());
         }
 
         public void DeleteOrder()
