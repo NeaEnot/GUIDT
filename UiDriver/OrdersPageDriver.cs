@@ -24,7 +24,18 @@ namespace UiDriver
 
         public List<OrderView> GetAllOrders()
         {
-            return context.OrderLogic.Read(null);
+            List<OrderView> list = new List<OrderView>();
+
+            try
+            {
+                list = context.OrderLogic.Read(null);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
+
+            return list;
         }
 
         public void AddOrder()

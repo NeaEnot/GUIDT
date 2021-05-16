@@ -4,11 +4,35 @@ using UiDriver;
 using ListImplement.Implements;
 using System.Collections.Generic;
 using Xunit;
+using Core.Interfaces;
 
 namespace Test.UiDriverTest
 {
     public class OrdersPageDriverTest
     {
+        private class OrderLogicNI : IOrderLogic
+        {
+            public void Create(OrderBinding model)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public void Delete(OrderBinding model)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public List<OrderView> Read(OrderBinding model)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public void Update(OrderBinding model)
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
         [Fact]
         public void TestOrdersListEmpty()
         {
@@ -46,11 +70,7 @@ namespace Test.UiDriverTest
             string msg = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            driver.MoveToOrderPage =
-                (context, order) =>
-                {
-                    msg += "!";
-                };
+            driver.MoveToOrderPage = (context, order) => { msg += "!"; };
 
             driver.AddOrder();
             driver.AddOrder();
@@ -112,11 +132,7 @@ namespace Test.UiDriverTest
             string msg = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            driver.MoveToProductsPage =
-                () =>
-                {
-                    msg = "!";
-                };
+            driver.MoveToProductsPage = () => { msg = "!"; };
 
             driver.ToProducts();
 
@@ -129,11 +145,7 @@ namespace Test.UiDriverTest
             string message = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            driver.ShowErrorMessage =
-                (msg) =>
-                {
-                    message = msg;
-                };
+            driver.ShowErrorMessage = (msg) => { message = msg; };
 
             driver.ShowErrorMessage("Error!");
 
@@ -146,11 +158,7 @@ namespace Test.UiDriverTest
             string message = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            driver.ShowInfoMessage =
-                (msg) =>
-                {
-                    message = msg;
-                };
+            driver.ShowInfoMessage = (msg) => { message = msg;  };
 
             driver.ShowInfoMessage("Info: info");
 
@@ -173,6 +181,18 @@ namespace Test.UiDriverTest
 
             driver.DeleteOrder();
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+        }
+
+        [Fact]
+        public void TestExceptionInGetAllOrders()
+        {
+            string message = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogicNI(), new ProductLogic()));
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            List<OrderView> list = driver.GetAllOrders();
+
+            Assert.Equal("The method or operation is not implemented.", message);
         }
     }
 }
