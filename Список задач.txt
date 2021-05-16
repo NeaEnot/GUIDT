@@ -1,5 +1,5 @@
 ﻿	Создать UiDriver
-	Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
+>	Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
 	Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
 	Класс для создания заказа
 	Кнопка сохранения заказа

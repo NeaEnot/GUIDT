@@ -143,32 +143,6 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
-        public void TestMethodShowErrorMessage()
-        {
-            string message = "";
-            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-
-            driver.ShowErrorMessage = (msg) => { message = msg; };
-
-            driver.ShowErrorMessage("Error!");
-
-            Assert.Equal("Error!", message);
-        }
-
-        [Fact]
-        public void TestMethodShowInfoMessage()
-        {
-            string message = "";
-            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-
-            driver.ShowInfoMessage = (msg) => { message = msg;  };
-
-            driver.ShowInfoMessage("Info: info");
-
-            Assert.Equal("Info: info", message);
-        }
-
-        [Fact]
         public void TestExceptionInSelected()
         {
             string message = "";
