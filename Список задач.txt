@@ -1,5 +1,4 @@
 ﻿	Создать UiDriver
-	OrdersPageDriver показ информационных сообщений
 	OrdersPageDriver вывод сообщения об удалении заказа
 	OrdersPageDriver вывод сообщения об ошибке при чтении всех заказов
 	OrdersPageDriver вывод сообщения об ошибке при удалении заказа
@@ -76,3 +75,4 @@
 Кнопка перехода к списку продуктов
 Стандартные делегаты в OrdersPageDriver
 OrdersPageDriver показ сообщений об ошибках
+OrdersPageDriver показ информационных сообщений

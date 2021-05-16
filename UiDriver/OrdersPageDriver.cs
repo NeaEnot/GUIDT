@@ -11,6 +11,7 @@ namespace UiDriver
         public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
         public Action MoveToProductsPage { private get; set; }
         public Action<string> ShowErrorMessage { get; set; }
+        public Action<string> ShowInfoMessage { get; set; }
         public Func<OrderView> Selected { private get; set; }
         #endregion
 
