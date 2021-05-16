@@ -122,5 +122,26 @@ namespace Test.UiDriverTest
 
             Assert.Equal("!", msg);
         }
+
+        //[Fact]
+        //public void TestExceptionInSelected()
+        //{
+        //    string msg = "";
+        //    OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+        //    driver.MoveToOrderPage =
+        //        (context, order) =>
+        //        {
+                    
+        //        };
+        //    driver.Selected = () => new OrderView { Id = 3 };
+
+        //    driver.UpdateOrder();
+        //    driver.UpdateOrder();
+
+        //    Assert.Equal("!!!!!!", msg);
+        //}
+
+        
     }
 }

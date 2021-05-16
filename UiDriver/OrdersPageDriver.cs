@@ -1,27 +1,22 @@
 ﻿using Core.Models.Binding;
 using Core.Models.View;
+using System;
 using System.Collections.Generic;
 
 namespace UiDriver
 {
     public class OrdersPageDriver
     {
-        #region delegates
-        public delegate void moveToOrderPage(UiContext context, OrderView order);
-        public delegate void moveToProductsPage();
-        public delegate OrderView selected();
-        #endregion
-
         #region сustomizableMethods
         /// <summary>
         /// Тут необходимо указать, например, функцию открытия нового окна
         /// </summary>
-        public moveToOrderPage MoveToOrderPage { private get; set; }
+        public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
         /// <summary>
         /// Тут необходимо указать, например, функцию открытия нового окна
         /// </summary>
-        public moveToProductsPage MoveToProductsPage { private get; set; }
-        public selected Selected { private get; set; }
+        public Action MoveToProductsPage { private get; set; }
+        public Func<OrderView> Selected { private get; set; }
         #endregion
 
         private UiContext context;
