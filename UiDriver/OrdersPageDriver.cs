@@ -34,12 +34,26 @@ namespace UiDriver
 
         public void UpdateOrder()
         {
-            MoveToOrderPage(context, Selected());
+            try
+            {
+                MoveToOrderPage(context, Selected());
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void DeleteOrder()
         {
-            context.OrderLogic.Delete(new OrderBinding { Id = Selected().Id });
+            try
+            {
+                context.OrderLogic.Delete(new OrderBinding { Id = Selected().Id });
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void ToProducts()

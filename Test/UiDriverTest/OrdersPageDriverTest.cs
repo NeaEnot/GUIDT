@@ -123,25 +123,6 @@ namespace Test.UiDriverTest
             Assert.Equal("!", msg);
         }
 
-        //[Fact]
-        //public void TestExceptionInSelected()
-        //{
-        //    string msg = "";
-        //    OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-
-        //    driver.MoveToOrderPage =
-        //        (context, order) =>
-        //        {
-                    
-        //        };
-        //    driver.Selected = () => new OrderView { Id = 3 };
-
-        //    driver.UpdateOrder();
-        //    driver.UpdateOrder();
-
-        //    Assert.Equal("!!!!!!", msg);
-        //}
-
         [Fact]
         public void TestMethodShowErrorMessage()
         {
@@ -174,6 +155,24 @@ namespace Test.UiDriverTest
             driver.ShowInfoMessage("Info: info");
 
             Assert.Equal("Info: info", message);
+        }
+
+        [Fact]
+        public void TestExceptionInSelected()
+        {
+            string message = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+            driver.MoveToOrderPage = (context, order) => {};
+            driver.Selected = () => (new List<OrderView>())[0];
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.UpdateOrder();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+            message = "";
+
+            driver.DeleteOrder();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
         }
     }
 }
