@@ -59,7 +59,9 @@ namespace UiDriver
         {
             try
             {
-                context.OrderLogic.Delete(new OrderBinding { Id = Selected().Id });
+                int id = Selected().Id;
+                context.OrderLogic.Delete(new OrderBinding { Id = id });
+                ShowInfoMessage("Order №" + id + " was deleted");
             }
             catch (Exception ex)
             {

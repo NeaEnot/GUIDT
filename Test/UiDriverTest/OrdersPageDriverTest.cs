@@ -81,8 +81,10 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodDelete()
         {
+            string message = "";
             OrderLogic orderLogic = new OrderLogic();
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.ShowInfoMessage = (msg) => { message = msg; };
 
             try
             {
@@ -97,6 +99,7 @@ namespace Test.UiDriverTest
                 Assert.Equal(2, list.Count);
                 Assert.Equal(1, list[0].Id);
                 Assert.Equal(3, list[1].Id);
+                Assert.Equal("Order №2 was deleted", message);
             }
             finally
             {
