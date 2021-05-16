@@ -8,14 +8,9 @@ namespace UiDriver
     public class OrdersPageDriver
     {
         #region сustomizableMethods
-        /// <summary>
-        /// Тут необходимо указать, например, функцию открытия нового окна
-        /// </summary>
         public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
-        /// <summary>
-        /// Тут необходимо указать, например, функцию открытия нового окна
-        /// </summary>
         public Action MoveToProductsPage { private get; set; }
+        public Action<string> ShowErrorMessage { get; set; }
         public Func<OrderView> Selected { private get; set; }
         #endregion
 

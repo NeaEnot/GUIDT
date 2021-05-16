@@ -142,6 +142,21 @@ namespace Test.UiDriverTest
         //    Assert.Equal("!!!!!!", msg);
         //}
 
-        
+        [Fact]
+        public void TestMethodShowErrorMessage()
+        {
+            string message = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+
+            driver.ShowErrorMessage =
+                (msg) =>
+                {
+                    message = msg;
+                };
+
+            driver.ShowErrorMessage("Error!");
+
+            Assert.Equal("Error!", message);
+        }
     }
 }
