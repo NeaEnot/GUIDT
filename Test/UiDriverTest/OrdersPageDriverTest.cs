@@ -43,28 +43,19 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodMoveToOrderPage()
         {
-            OrderLogic orderLogic = new OrderLogic();
+            string msg = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            try
-            {
-                driver.MoveToOrderPage =
-                    (context, order) =>
-                    {
-                        orderLogic.Create(new OrderBinding());
-                        orderLogic.Create(new OrderBinding());
-                    };
+            driver.MoveToOrderPage =
+                (context, order) =>
+                {
+                    msg += "!";
+                };
 
-                driver.AddOrder();
-                driver.AddOrder();
-                List<OrderView> list = driver.GetAllOrders();
+            driver.AddOrder();
+            driver.AddOrder();
 
-                Assert.Equal(4, list.Count);
-            }
-            finally
-            {
-                orderLogic.Delete(null);
-            }
+            Assert.Equal("!!", msg);
         }
 
         [Fact]
@@ -96,31 +87,23 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodUpdate()
         {
-            OrderLogic orderLogic = new OrderLogic();
+            string msg = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            try
-            {
-                driver.MoveToOrderPage =
-                    (context, order) =>
+            driver.MoveToOrderPage =
+                (context, order) =>
+                {
+                    for (int i = 0; i < order.Id; i++)
                     {
-                        for (int i = 0; i < order.Id; i++)
-                        {
-                            orderLogic.Create(new OrderBinding());
-                        }
-                    };
-                driver.Selected = () => new OrderView { Id = 3 };
+                        msg += "!";
+                    }
+                };
+            driver.Selected = () => new OrderView { Id = 3 };
 
-                driver.UpdateOrder();
-                driver.UpdateOrder();
-                List<OrderView> list = driver.GetAllOrders();
+            driver.UpdateOrder();
+            driver.UpdateOrder();
 
-                Assert.Equal(6, list.Count);
-            }
-            finally
-            {
-                orderLogic.Delete(null);
-            }
+            Assert.Equal("!!!!!!", msg);
         }
     }
 }
