@@ -1,12 +1,14 @@
-﻿namespace UiDriver
+﻿using Core.Models.View;
+
+namespace UiDriver
 {
     public class OrderPageDriver
     {
-        public int? orderId;
+        public OrderView order;
 
-        public OrderPageDriver(UiContext context, int? orderId)
+        public OrderPageDriver(UiContext context, OrderView order)
         {
-            this.orderId = orderId;
+            this.order = order;
         }
     }
 }
