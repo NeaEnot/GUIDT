@@ -1,6 +1,4 @@
 ﻿	Создать UiDriver
-	Класс для создания заказа
-	Поле для Id
 	Отображение всех OrderProduct
 	Выделение OrderProduct
 	Кнопка добавления OrderProduct
@@ -11,6 +9,7 @@
 	Вывод сообщения о создании заказа
 	Вывод сообщения об обновлении заказа
 	Вывод сообщения о пустом OrderProducts
+	Сделать id приватным
 	Абстрактный класс PageDriver
 	Класс для добавления продукта к заказу
 	Получение всех продуктов
@@ -107,8 +106,8 @@ OrdersPageDriver вывод сообщения об ошибке при чтен
 - OrdersPageDriver вывод сообщения об удалении заказа
 - Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
 - Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
-- 
-- 
+- Класс для создания заказа
+- Поле для Id
 - 
 - 
 - 
