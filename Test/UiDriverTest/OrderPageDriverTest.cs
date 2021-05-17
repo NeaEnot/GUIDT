@@ -1,5 +1,6 @@
 ﻿using Core.Models.View;
 using ListImplement.Implements;
+using System.Collections.Generic;
 using UiDriver;
 using Xunit;
 
@@ -17,10 +18,26 @@ namespace Test.UiDriverTest
             Assert.Equal(null, driver2.order);
         }
 
-        //[Fact]
-        //public void TestGetAllOrderProducts()
-        //{
-        //    OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), 1);
-        //}
+        [Fact]
+        public void TestGetAllOrderProducts()
+        {
+            OrderView order = new OrderView { OrderProducts = new List<OrderProductView>() };
+            order.OrderProducts.Add(new OrderProductView { Id = 2, ProductId = 8, Price = 50, Count = 4, ProductName = "Test1" });
+            order.OrderProducts.Add(new OrderProductView { Id = 3, ProductId = 3, Price = 25, Count = 1, ProductName = "Test2" });
+            order.OrderProducts.Add(new OrderProductView { Id = 5, ProductId = 6, Price = 1, Count = 100, ProductName = "Test3" });
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
+
+            List<OrderProductView> list = driver.GetAllOrderProducts();
+
+            Assert.Equal(2, list[0].Id);
+            Assert.Equal(8, list[0].ProductId);
+            Assert.Equal("Test1", list[0].ProductName);
+            Assert.Equal(3, list[1].Id);
+            Assert.Equal(25, list[1].Price);
+            Assert.Equal("Test2", list[1].ProductName);
+            Assert.Equal(5, list[2].Id);
+            Assert.Equal(100, list[2].Count);
+            Assert.Equal("Test3", list[2].ProductName);
+        }
     }
 }

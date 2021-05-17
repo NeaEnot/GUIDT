@@ -1,5 +1,5 @@
 ﻿	Создать UiDriver
-	Отображение всех OrderProduct
+	Инициализация OrderProducts в конструкторе OrderView
 	Выделение OrderProduct
 	Кнопка добавления OrderProduct
 	Кнопка обновления OrderProduct
@@ -109,7 +109,7 @@ OrdersPageDriver вывод сообщения об ошибке при чтен
 - Класс для создания заказа
 - Поле для Id
 - Передача в OrderPageDriver OrderView
-- 
+- Отображение всех OrderProduct
 - 
 - 
 - 
