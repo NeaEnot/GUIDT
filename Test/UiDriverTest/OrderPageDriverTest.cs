@@ -75,5 +75,20 @@ namespace Test.UiDriverTest
             Assert.Equal(5, list[1].Id);
             Assert.Equal("Test3", list[1].ProductName);
         }
+
+        [Fact]
+        public void TestMethodMoveToOrderProductPage()
+        {
+            string msg = "";
+            OrderView order = new OrderView();
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
+
+            driver.MoveToOrderProductPage = (context, orderProduct) => { if (orderProduct == null) msg += "!"; };
+
+            driver.AddOrderProduct();
+            driver.AddOrderProduct();
+
+            Assert.Equal("!!", msg);
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿	Создать UiDriver
-	Метод вызова окна для добавления продукта к заказу
 	Кнопка добавления OrderProduct
 	Кнопка обновления OrderProduct
 	Кнопка сохранения заказа
@@ -103,14 +102,14 @@ OrdersPageDriver показ сообщений об ошибках
 OrdersPageDriver показ информационных сообщений
 OrdersPageDriver вывод сообщения об ошибке при отсутствии выделенного элемента
 OrdersPageDriver вывод сообщения об ошибке при чтении всех заказов
-- OrdersPageDriver вывод сообщения об удалении заказа
-- Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
-- Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
-- Класс для создания заказа
-- Поле для Id
-- Передача в OrderPageDriver OrderView
-- Отображение всех OrderProduct
-- Инициализация OrderProducts в конструкторе OrderView
-- Выделение OrderProduct
-- Кнопка удаления OrderProduct
-- 
+OrdersPageDriver вывод сообщения об удалении заказа
+Заменить уровень доступа OrdersPageDriver.ShowErrorMessage на private get, set
+Заменить уровень доступа OrdersPageDriver.ShowInfoMessage на private get, set
+Класс для создания заказа
+Поле для Id
+Передача в OrderPageDriver OrderView
+Отображение всех OrderProduct
+Инициализация OrderProducts в конструкторе OrderView
+Выделение OrderProduct
+Кнопка удаления OrderProduct
+Метод вызова окна для добавления продукта к заказу
