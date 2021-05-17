@@ -13,5 +13,10 @@ namespace Core.Models.View
         public int Sum { get { return OrderProducts.Sum(rec => rec.Price * rec.Count); } }
 
         public List<OrderProductView> OrderProducts { get; set; }
+
+        public OrderView()
+        {
+            OrderProducts = new List<OrderProductView>();
+        }
     }
 }

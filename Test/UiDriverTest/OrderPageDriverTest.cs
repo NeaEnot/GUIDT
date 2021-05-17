@@ -21,7 +21,7 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestGetAllOrderProducts()
         {
-            OrderView order = new OrderView { OrderProducts = new List<OrderProductView>() };
+            OrderView order = new OrderView();
             order.OrderProducts.Add(new OrderProductView { Id = 2, ProductId = 8, Price = 50, Count = 4, ProductName = "Test1" });
             order.OrderProducts.Add(new OrderProductView { Id = 3, ProductId = 3, Price = 25, Count = 1, ProductName = "Test2" });
             order.OrderProducts.Add(new OrderProductView { Id = 5, ProductId = 6, Price = 1, Count = 100, ProductName = "Test3" });

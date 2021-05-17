@@ -1,5 +1,4 @@
 ﻿using Core.Models.View;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Test.CoreTest
@@ -32,7 +31,7 @@ namespace Test.CoreTest
         [Fact]
         public void TestOrderView()
         {
-            OrderView ov = new OrderView { Id = 0, OrderProducts = new List<OrderProductView>() };
+            OrderView ov = new OrderView { Id = 0 };
             ov.OrderProducts.Add(new OrderProductView { Id = 0, OrderId = 0, ProductId = 0, Count = 10, Price = 10 });
             ov.OrderProducts.Add(new OrderProductView { Id = 1, OrderId = 0, ProductId = 1, Count = 5, Price = 2 });
 
