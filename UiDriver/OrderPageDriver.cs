@@ -19,5 +19,10 @@ namespace UiDriver
         {
             return order.OrderProducts;
         }
+
+        public void DeleteOrderProduct()
+        {
+            order.OrderProducts.Remove(Selected());
+        }
     }
 }
