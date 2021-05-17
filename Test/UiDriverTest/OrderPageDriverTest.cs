@@ -39,5 +39,21 @@ namespace Test.UiDriverTest
             Assert.Equal(100, list[2].Count);
             Assert.Equal("Test3", list[2].ProductName);
         }
+
+        [Fact]
+        public void TestSelected()
+        {
+            OrderView order = new OrderView();
+            order.OrderProducts.Add(new OrderProductView { Id = 2, ProductId = 8, Price = 50, Count = 4, ProductName = "Test1" });
+            order.OrderProducts.Add(new OrderProductView { Id = 3, ProductId = 3, Price = 25, Count = 1, ProductName = "Test2" });
+            order.OrderProducts.Add(new OrderProductView { Id = 5, ProductId = 6, Price = 1, Count = 100, ProductName = "Test3" });
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
+            driver.Selected = () => order.OrderProducts[1];
+
+            OrderProductView item = driver.Selected();
+
+            Assert.Equal(3, item.Id);
+            Assert.Equal("Test2", item.ProductName);
+        }
     }
 }
