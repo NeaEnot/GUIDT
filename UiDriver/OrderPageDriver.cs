@@ -8,7 +8,7 @@ namespace UiDriver
     {
         #region сustomizableMethods
         public Action<UiContext, OrderProductView> MoveToOrderProductPage { private get; set; }
-        public Func<OrderProductView> Selected { get; set; }
+        public Func<OrderProductView> Selected { private get; set; }
         #endregion
 
         public OrderView order;
