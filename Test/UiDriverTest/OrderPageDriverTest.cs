@@ -141,6 +141,7 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodSaveUpdatedOrder()
         {
+            string message = "";
             OrderLogic logicO = new OrderLogic();
             ProductLogic logicP = new ProductLogic();
 
@@ -149,6 +150,7 @@ namespace Test.UiDriverTest
                 logicP.Create(new ProductBinding { Price = 10 });
                 logicO.Create(new OrderBinding());
                 OrderPageDriver driver = new OrderPageDriver(new UiContext(logicO, logicP), logicO.Read(null)[0]);
+                driver.ShowInfoMessage = (msg) => { message = msg; };
                 driver.MoveToOrderProductPage = (context, order, orderProduct) => order.OrderProducts.Add(new OrderProductView { ProductId = 1 });
                 driver.AddOrderProduct();
                 driver.AddOrderProduct();
@@ -159,6 +161,7 @@ namespace Test.UiDriverTest
 
                 Assert.Single(list);
                 Assert.Single(list[0].OrderProducts);
+                Assert.Equal("Order №1 was updated", message);
             }
             finally
             {

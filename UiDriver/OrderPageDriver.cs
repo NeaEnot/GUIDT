@@ -81,6 +81,7 @@ namespace UiDriver
             else
             {
                 context.OrderLogic.Update(model);
+                ShowInfoMessage("Order №" + model.Id + " was updated");
             }
         }
     }
