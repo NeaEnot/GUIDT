@@ -29,7 +29,7 @@ namespace Test.UiDriverTest
                 logic.Create(new ProductBinding { Name = "Test1", Price = 10 });
                 logic.Create(new ProductBinding { Name = "Test2", Price = 15 });
 
-                OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), logic), new OrderView(), null);
+                ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), logic));
 
                 List<ProductView> list = driver.GetAllProducts();
 
@@ -43,6 +43,19 @@ namespace Test.UiDriverTest
             {
                 logic.Delete(null);
             }
+        }
+
+        [Fact]
+        public void TestSelect()
+        {
+            ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.Selected = () => new ProductView { Id = 2, Name = "Apple", Price = 9 };
+
+            ProductView item = driver.Selected();
+
+            Assert.Equal(2, item.Id);
+            Assert.Equal("Apple", item.Name);
+            Assert.Equal(9, item.Price);
         }
     }
 }
