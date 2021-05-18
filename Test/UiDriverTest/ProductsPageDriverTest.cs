@@ -73,6 +73,7 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodDeleteProduct()
         {
+            string message = "";
             ProductLogic logic = new ProductLogic();
 
             try
@@ -83,6 +84,7 @@ namespace Test.UiDriverTest
                 ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), logic));
                 List<ProductView> list = driver.GetAllProducts();
                 driver.Selected = () => list[1];
+                driver.ShowInfoMessage = (msg) => { message = msg; };
 
                 driver.DeleteProduct();
                 list = driver.GetAllProducts();
@@ -92,6 +94,7 @@ namespace Test.UiDriverTest
                 Assert.Equal(10, list[0].Price);
                 Assert.Equal("Test3", list[1].Name);
                 Assert.Equal(23, list[1].Price);
+                Assert.Equal("Product №2 was deleted", message);
             }
             finally
             {

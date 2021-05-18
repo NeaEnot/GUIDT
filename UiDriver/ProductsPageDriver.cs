@@ -32,7 +32,9 @@ namespace UiDriver
 
         public void DeleteProduct()
         {
-            context.ProductLogic.Delete(new ProductBinding { Id = Selected().Id });
+            int id = Selected().Id;
+            context.ProductLogic.Delete(new ProductBinding { Id = id });
+            ShowInfoMessage("Product №" + id + " was deleted");
         }
     }
 }
