@@ -13,9 +13,8 @@ namespace UiDriver
         public Func<OrderView> Selected { private get; set; }
         #endregion
 
-        public OrdersPageDriver(UiContext context)
+        public OrdersPageDriver(UiContext context) : base(context)
         {
-            this.context = context;
         }
 
         public List<OrderView> GetAllOrders()

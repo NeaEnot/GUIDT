@@ -15,9 +15,8 @@ namespace UiDriver
 
         private OrderView order;
 
-        public OrderPageDriver(UiContext context, OrderView order)
+        public OrderPageDriver(UiContext context, OrderView order) : base(context)
         {
-            this.context = context;
             this.order = order ?? new OrderView { Id = -1 };
         }
 

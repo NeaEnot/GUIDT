@@ -1,15 +1,17 @@
 ﻿using Core.Models.View;
+using System;
 using System.Collections.Generic;
 
 namespace UiDriver
 {
     public class OrderProductPageDriver: PageDriver
     {
-        private UiContext context;
+        #region сustomizableMethods
+        public Func<ProductView> Selected { get; set; }
+        #endregion
 
-        public OrderProductPageDriver(UiContext context, OrderView order, OrderProductView orderProduct)
+        public OrderProductPageDriver(UiContext context, OrderView order, OrderProductView orderProduct) : base(context)
         {
-            this.context = context;
         }
 
         public List<ProductView> GetAllProducts()
