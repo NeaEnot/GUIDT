@@ -45,14 +45,26 @@ namespace UiDriver
 
         public void SaveOrderProduct()
         {
-            orderProduct.ProductId = Selected().Id;
-            orderProduct.ProductName = Selected().Name;
-            orderProduct.Price = Selected().Price;
-            orderProduct.Count = Count();
-
-            if (orderProduct.Id < 0)
+            try
             {
-                order.OrderProducts.Add(orderProduct);
+                if (Selected() == null)
+                {
+                    throw new Exception("Product is not selected");
+                }
+
+                orderProduct.ProductId = Selected().Id;
+                orderProduct.ProductName = Selected().Name;
+                orderProduct.Price = Selected().Price;
+                orderProduct.Count = Count();
+
+                if (orderProduct.Id < 0)
+                {
+                    order.OrderProducts.Add(orderProduct);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
             }
         }
     }

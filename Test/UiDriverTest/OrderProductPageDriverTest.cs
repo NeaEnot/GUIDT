@@ -48,13 +48,9 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestGetSum()
         {
-            List<ProductView> products = new List<ProductView>();
-            products.Add(new ProductView { Name = "Test1", Price = 10 });
-            products.Add(new ProductView { Name = "Test2", Price = 15 });
-            products.Add(new ProductView { Name = "Test3", Price = 23 });
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
 
-            driver.Selected = () => products[1];
+            driver.Selected = () => new ProductView { Name = "Test2", Price = 15 };
             driver.Count = () => 10;
 
             Assert.Equal(150, driver.GetSum());
@@ -116,6 +112,20 @@ namespace Test.UiDriverTest
             Assert.Equal("Ananas", order.OrderProducts[0].ProductName);
             Assert.Equal(14, order.OrderProducts[0].Price);
             Assert.Equal(1, order.OrderProducts[0].Count);
+        }
+
+        [Fact]
+        public void TestSelectedException()
+        {
+            string message = "";
+            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
+            driver.Selected = () => null;
+            driver.Count = () => 3;
+            driver.ShowErrorMessage = (msg) => message = msg;
+
+            driver.SaveOrderProduct();
+
+            Assert.Equal("Product is not selected", message);
         }
     }
 }
