@@ -4,35 +4,12 @@ using UiDriver;
 using ListImplement.Implements;
 using System.Collections.Generic;
 using Xunit;
-using Core.Interfaces;
+using Test.Helpers;
 
 namespace Test.UiDriverTest
 {
     public class OrdersPageDriverTest
     {
-        private class OrderLogicNI : IOrderLogic
-        {
-            public void Create(OrderBinding model)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void Delete(OrderBinding model)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public List<OrderView> Read(OrderBinding model)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void Update(OrderBinding model)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
         [Fact]
         public void TestOrdersListEmpty()
         {
