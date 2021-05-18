@@ -82,5 +82,34 @@ namespace Test.UiDriverTest
 
             Assert.Equal("!~", message);
         }
+
+        [Fact]
+        public void TestMethodDeleteProduct()
+        {
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                logic.Create(new ProductBinding { Name = "Test1", Price = 10 });
+                logic.Create(new ProductBinding { Name = "Test2", Price = 15 });
+                logic.Create(new ProductBinding { Name = "Test3", Price = 23 });
+                ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), logic));
+                List<ProductView> list = driver.GetAllProducts();
+                driver.Selected = () => list[1];
+
+                driver.DeleteProduct();
+                list = driver.GetAllProducts();
+
+                Assert.Equal(2, list.Count);
+                Assert.Equal("Test1", list[0].Name);
+                Assert.Equal(10, list[0].Price);
+                Assert.Equal("Test3", list[1].Name);
+                Assert.Equal(23, list[1].Price);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
     }
 }

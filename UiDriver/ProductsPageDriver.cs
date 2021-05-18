@@ -1,4 +1,5 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +28,11 @@ namespace UiDriver
         public void UpdateProduct()
         {
             MoveToProductPage(context, Selected());
+        }
+
+        public void DeleteProduct()
+        {
+            context.ProductLogic.Delete(new ProductBinding { Id = Selected().Id });
         }
     }
 }
