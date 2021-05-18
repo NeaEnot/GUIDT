@@ -60,5 +60,15 @@ namespace Test.UiDriverTest
             Assert.Equal("Test2", product.Name);
             Assert.Equal(15, product.Price);
         }
+
+        [Fact]
+        public void TestCount()
+        {
+            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
+
+            driver.Count = () => 10;
+
+            Assert.Equal(10, driver.Count());
+        }
     }
 }

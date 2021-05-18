@@ -8,6 +8,7 @@ namespace UiDriver
     {
         #region сustomizableMethods
         public Func<ProductView> Selected { get; set; }
+        public Func<int> Count { get; set; }
         #endregion
 
         public OrderProductPageDriver(UiContext context, OrderView order, OrderProductView orderProduct) : base(context)
