@@ -11,8 +11,11 @@ namespace UiDriver
         public Func<int> Count { private get; set; }
         #endregion
 
+        private OrderView order;
+
         public OrderProductPageDriver(UiContext context, OrderView order, OrderProductView orderProduct) : base(context)
         {
+            this.order = order;
         }
 
         public List<ProductView> GetAllProducts()
@@ -23,6 +26,18 @@ namespace UiDriver
         public int GetSum()
         {
             return Selected().Price * Count();
+        }
+
+        public void SaveOrderProduct()
+        {
+            order.OrderProducts.Add(
+                new OrderProductView
+                {
+                    ProductId = Selected().Id,
+                    ProductName = Selected().Name,
+                    Price = Selected().Price,
+                    Count = Count()
+                });
         }
     }
 }

@@ -59,5 +59,21 @@ namespace Test.UiDriverTest
 
             Assert.Equal(150, driver.GetSum());
         }
+
+        [Fact]
+        public void TestSaveCreatedOrderProduct()
+        {
+            OrderView order = new OrderView();
+            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order, null);
+            driver.Selected = () => new ProductView { Name = "Banan", Price = 11 };
+            driver.Count = () => 3;
+
+            driver.SaveOrderProduct();
+
+            Assert.Single(order.OrderProducts);
+            Assert.Equal("Banan", order.OrderProducts[0].ProductName);
+            Assert.Equal(11, order.OrderProducts[0].Price);
+            Assert.Equal(3, order.OrderProducts[0].Count);
+        }
     }
 }
