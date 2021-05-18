@@ -1,6 +1,7 @@
 ﻿using Core.Models.View;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UiDriver
 {
@@ -28,6 +29,18 @@ namespace UiDriver
         public int GetSum()
         {
             return Selected().Price * Count();
+        }
+
+        public ProductView GetSelectedProduct()
+        {
+            if (orderProduct.Id < 0)
+            {
+                return null;
+            }
+            else
+            {
+                return context.ProductLogic.Read(null).FirstOrDefault(rec => rec.Id == orderProduct.ProductId);
+            }
         }
 
         public void SaveOrderProduct()

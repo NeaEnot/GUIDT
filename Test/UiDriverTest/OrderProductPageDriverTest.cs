@@ -29,7 +29,7 @@ namespace Test.UiDriverTest
                 logic.Create(new ProductBinding { Name = "Test1", Price = 10 });
                 logic.Create(new ProductBinding { Name = "Test2", Price = 15 });
 
-                OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
+                OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), logic), new OrderView(), null);
 
                 List<ProductView> list = driver.GetAllProducts();
 
@@ -58,6 +58,31 @@ namespace Test.UiDriverTest
             driver.Count = () => 10;
 
             Assert.Equal(150, driver.GetSum());
+        }
+
+        [Fact]
+        public void TestGetSelectedProduct()
+        {
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                logic.Create(new ProductBinding { Name = "Test1", Price = 10 });
+                OrderProductView orderProduct = new OrderProductView { ProductId = 1 };
+
+                OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), logic), new OrderView(), orderProduct);
+                ProductView product1 = driver.GetSelectedProduct();
+                driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), logic), new OrderView(), null);
+                ProductView product2 = driver.GetSelectedProduct();
+
+                Assert.Equal("Test1", product1.Name);
+                Assert.Equal(10, product1.Price);
+                Assert.Null(product2);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
 
         [Fact]
