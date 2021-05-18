@@ -16,7 +16,7 @@ namespace UiDriver
         public OrderPageDriver(UiContext context, OrderView order)
         {
             this.context = context;
-            this.order = order;
+            this.order = order ?? new OrderView { Id = -1 };
         }
 
         public List<OrderProductView> GetAllOrderProducts()

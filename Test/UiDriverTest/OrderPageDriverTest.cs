@@ -15,7 +15,7 @@ namespace Test.UiDriverTest
             OrderPageDriver driver2 = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), null);
 
             Assert.Equal(10, driver1.order.Id);
-            Assert.Equal(null, driver2.order);
+            Assert.Equal(-1, driver2.order.Id);
         }
 
         [Fact]
