@@ -46,19 +46,6 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
-        public void TestSelect()
-        {
-            ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-            driver.Selected = () => new ProductView { Id = 2, Name = "Apple", Price = 9 };
-
-            ProductView item = driver.Selected();
-
-            Assert.Equal(2, item.Id);
-            Assert.Equal("Apple", item.Name);
-            Assert.Equal(9, item.Price);
-        }
-
-        [Fact]
         public void TestMethodMoveToProductPage()
         {
             string message = "";

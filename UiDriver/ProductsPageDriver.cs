@@ -9,7 +9,7 @@ namespace UiDriver
     {
         #region сustomizableMethods
         public Action<UiContext, ProductView> MoveToProductPage { private get; set; }
-        public Func<ProductView> Selected { get; set; }
+        public Func<ProductView> Selected { private get; set; }
         #endregion
 
         public ProductsPageDriver(UiContext context) : base(context)
