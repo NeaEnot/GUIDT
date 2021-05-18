@@ -34,5 +34,10 @@ namespace UiDriver
         {
             MoveToOrderProductPage(context, null);
         }
+
+        public void UpdateOrderProduct()
+        {
+            MoveToOrderProductPage(context, Selected());
+        }
     }
 }

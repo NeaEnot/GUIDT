@@ -83,12 +83,25 @@ namespace Test.UiDriverTest
             OrderView order = new OrderView();
             OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
 
-            driver.MoveToOrderProductPage = (context, orderProduct) => { if (orderProduct == null) msg += "!"; };
+            driver.MoveToOrderProductPage = 
+                (context, orderProduct) => 
+                {
+                    if (orderProduct == null)
+                    {
+                        msg += "!";
+                    }
+                    else
+                    {
+                        msg += "~";
+                    }
+                };
+            driver.Selected = () => new OrderProductView();
 
             driver.AddOrderProduct();
+            driver.UpdateOrderProduct();
             driver.AddOrderProduct();
 
-            Assert.Equal("!!", msg);
+            Assert.Equal("!~!", msg);
         }
     }
 }
