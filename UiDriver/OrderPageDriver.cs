@@ -4,16 +4,14 @@ using System.Collections.Generic;
 
 namespace UiDriver
 {
-    public class OrderPageDriver
+    public class OrderPageDriver: PageDriver
     {
         #region сustomizableMethods
         public Action<UiContext, OrderProductView> MoveToOrderProductPage { private get; set; }
         public Func<OrderProductView> Selected { get; set; }
-        public Action<string> ShowErrorMessage { private get; set; }
         #endregion
 
         public OrderView order;
-        private UiContext context;
 
         public OrderPageDriver(UiContext context, OrderView order)
         {

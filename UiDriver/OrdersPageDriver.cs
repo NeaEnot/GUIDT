@@ -5,17 +5,13 @@ using System.Collections.Generic;
 
 namespace UiDriver
 {
-    public class OrdersPageDriver
+    public class OrdersPageDriver: PageDriver
     {
         #region сustomizableMethods
         public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
         public Action MoveToProductsPage { private get; set; }
-        public Action<string> ShowErrorMessage { private get; set; }
-        public Action<string> ShowInfoMessage { private get; set; }
         public Func<OrderView> Selected { private get; set; }
         #endregion
-
-        private UiContext context;
 
         public OrdersPageDriver(UiContext context)
         {
