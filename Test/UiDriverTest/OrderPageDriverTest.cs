@@ -108,7 +108,7 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
-        public void TestMethodSaveOrder()
+        public void TestMethodSaveCreatedOrder()
         {
             OrderLogic logicO = new OrderLogic();
             ProductLogic logicP = new ProductLogic();
@@ -117,6 +117,35 @@ namespace Test.UiDriverTest
             try
             {
                 logicP.Create(new ProductBinding { Price = 10 });
+                driver.MoveToOrderProductPage = (context, order, orderProduct) => order.OrderProducts.Add(new OrderProductView { ProductId = 1 });
+                driver.AddOrderProduct();
+                driver.AddOrderProduct();
+                driver.AddOrderProduct();
+
+                driver.SaveOrder();
+                List<OrderView> list = logicO.Read(null);
+
+                Assert.Single(list);
+                Assert.Single(list[0].OrderProducts);
+            }
+            finally
+            {
+                logicO.Delete(null);
+                logicP.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestMethodSaveUpdatedOrder()
+        {
+            OrderLogic logicO = new OrderLogic();
+            ProductLogic logicP = new ProductLogic();
+
+            try
+            {
+                logicP.Create(new ProductBinding { Price = 10 });
+                logicO.Create(new OrderBinding());
+                OrderPageDriver driver = new OrderPageDriver(new UiContext(logicO, logicP), logicO.Read(null)[0]);
                 driver.MoveToOrderProductPage = (context, order, orderProduct) => order.OrderProducts.Add(new OrderProductView { ProductId = 1 });
                 driver.AddOrderProduct();
                 driver.AddOrderProduct();

@@ -58,19 +58,29 @@ namespace UiDriver
 
         public void SaveOrder()
         {
-            context.OrderLogic.Create(
-                new OrderBinding 
-                { 
-                    OrderProducts = 
+            OrderBinding model =
+                new OrderBinding
+                {
+                    Id = order.Id,
+                    OrderProducts =
                         order.OrderProducts
-                        .Select(rec => 
+                        .Select(rec =>
                         new OrderProductBinding
                         {
                             ProductId = rec.ProductId,
                             Count = rec.Count
                         })
                         .ToList()
-                });
+                };
+
+            if (order.Id < 0)
+            {
+                context.OrderLogic.Create(model);
+            }
+            else
+            {
+                context.OrderLogic.Update(model);
+            }
         }
     }
 }
