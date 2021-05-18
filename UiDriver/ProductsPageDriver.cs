@@ -27,14 +27,28 @@ namespace UiDriver
 
         public void UpdateProduct()
         {
-            MoveToProductPage(context, Selected());
+            try
+            {
+                MoveToProductPage(context, Selected());
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void DeleteProduct()
         {
-            int id = Selected().Id;
-            context.ProductLogic.Delete(new ProductBinding { Id = id });
-            ShowInfoMessage("Product №" + id + " was deleted");
+            try
+            {
+                int id = Selected().Id;
+                context.ProductLogic.Delete(new ProductBinding { Id = id });
+                ShowInfoMessage("Product №" + id + " was deleted");
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
     }
 }
