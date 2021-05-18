@@ -73,6 +73,12 @@ namespace UiDriver
                         .ToList()
                 };
 
+            if (model.OrderProducts.Count <= 0)
+            {
+                ShowErrorMessage("List of products is empty");
+                return;
+            }
+
             if (order.Id < 0)
             {
                 context.OrderLogic.Create(model);

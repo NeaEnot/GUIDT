@@ -169,5 +169,27 @@ namespace Test.UiDriverTest
                 logicP.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestMethodSaveOrderWithoutOrderProducts()
+        {
+            string message = "";
+            OrderLogic logicO = new OrderLogic();
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(logicO, new ProductLogic()), null);
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            try
+            {
+                driver.SaveOrder();
+                List<OrderView> list = logicO.Read(null);
+
+                Assert.Empty(list);
+                Assert.Equal("List of products is empty", message);
+            }
+            finally
+            {
+                logicO.Delete(null);
+            }
+        }
     }
 }
