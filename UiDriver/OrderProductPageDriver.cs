@@ -19,5 +19,10 @@ namespace UiDriver
         {
             return context.ProductLogic.Read(null);
         }
+
+        public int GetSum()
+        {
+            return Selected().Price * Count();
+        }
     }
 }

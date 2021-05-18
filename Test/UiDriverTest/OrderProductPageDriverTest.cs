@@ -70,5 +70,20 @@ namespace Test.UiDriverTest
 
             Assert.Equal(10, driver.Count());
         }
+
+        [Fact]
+        public void TestGetSum()
+        {
+            List<ProductView> products = new List<ProductView>();
+            products.Add(new ProductView { Name = "Test1", Price = 10 });
+            products.Add(new ProductView { Name = "Test2", Price = 15 });
+            products.Add(new ProductView { Name = "Test3", Price = 23 });
+            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
+
+            driver.Selected = () => products[1];
+            driver.Count = () => 10;
+
+            Assert.Equal(150, driver.GetSum());
+        }
     }
 }
