@@ -1,6 +1,8 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UiDriver
 {
@@ -52,6 +54,23 @@ namespace UiDriver
             {
                 ShowErrorMessage(ex.Message);
             }
+        }
+
+        public void SaveOrder()
+        {
+            context.OrderLogic.Create(
+                new OrderBinding 
+                { 
+                    OrderProducts = 
+                        order.OrderProducts
+                        .Select(rec => 
+                        new OrderProductBinding
+                        {
+                            ProductId = rec.ProductId,
+                            Count = rec.Count
+                        })
+                        .ToList()
+                });
         }
     }
 }

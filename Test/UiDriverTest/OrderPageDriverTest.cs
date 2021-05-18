@@ -1,4 +1,5 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using ListImplement.Implements;
 using System.Collections.Generic;
 using UiDriver;
@@ -106,20 +107,32 @@ namespace Test.UiDriverTest
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
         }
 
-        //[Fact]
-        //public void TestMethodSaveOrder()
-        //{
-        //    OrderLogic logic = new OrderLogic();
-        //    OrderPageDriver driver = new OrderPageDriver(new UiContext(logic, new ProductLogic()), new OrderView());
+        [Fact]
+        public void TestMethodSaveOrder()
+        {
+            OrderLogic logicO = new OrderLogic();
+            ProductLogic logicP = new ProductLogic();
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(logicO, logicP), null);
 
-        //    try
-        //    {
-        //        driver.MoveToOrderProductPage = (context, order, orderProduct) => order.Add(new OrderProductView());
-        //    }
-        //    finally
-        //    {
-        //        logic.Delete(null);
-        //    }
-        //}
+            try
+            {
+                logicP.Create(new ProductBinding { Price = 10 });
+                driver.MoveToOrderProductPage = (context, order, orderProduct) => order.OrderProducts.Add(new OrderProductView { ProductId = 1 });
+                driver.AddOrderProduct();
+                driver.AddOrderProduct();
+                driver.AddOrderProduct();
+
+                driver.SaveOrder();
+                List<OrderView> list = logicO.Read(null);
+
+                Assert.Single(list);
+                Assert.Single(list[0].OrderProducts);
+            }
+            finally
+            {
+                logicO.Delete(null);
+                logicP.Delete(null);
+            }
+        }
     }
 }
