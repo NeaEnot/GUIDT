@@ -68,7 +68,7 @@ namespace Test.UiDriverTest
             OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
 
             driver.MoveToOrderProductPage = 
-                (context, orderProduct) => 
+                (context, order, orderProduct) => 
                 {
                     if (orderProduct == null)
                     {
@@ -94,7 +94,7 @@ namespace Test.UiDriverTest
             string message = "";
             OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
 
-            driver.MoveToOrderProductPage = (context, orderProduct) => { };
+            driver.MoveToOrderProductPage = (context, order, orderProduct) => { };
             driver.Selected = () => (new List<OrderProductView>())[0];
             driver.ShowErrorMessage = (msg) => { message = msg; };
 
@@ -105,5 +105,21 @@ namespace Test.UiDriverTest
             driver.DeleteOrderProduct();
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
         }
+
+        //[Fact]
+        //public void TestMethodSaveOrder()
+        //{
+        //    OrderLogic logic = new OrderLogic();
+        //    OrderPageDriver driver = new OrderPageDriver(new UiContext(logic, new ProductLogic()), new OrderView());
+
+        //    try
+        //    {
+        //        driver.MoveToOrderProductPage = (context, order, orderProduct) => order.Add(new OrderProductView());
+        //    }
+        //    finally
+        //    {
+        //        logic.Delete(null);
+        //    }
+        //}
     }
 }

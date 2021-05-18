@@ -7,7 +7,7 @@ namespace UiDriver
     public class OrderPageDriver: PageDriver
     {
         #region сustomizableMethods
-        public Action<UiContext, OrderProductView> MoveToOrderProductPage { private get; set; }
+        public Action<UiContext, OrderView, OrderProductView> MoveToOrderProductPage { private get; set; }
         public Func<OrderProductView> Selected { private get; set; }
         #endregion
 
@@ -39,14 +39,14 @@ namespace UiDriver
 
         public void AddOrderProduct()
         {
-            MoveToOrderProductPage(context, null);
+            MoveToOrderProductPage(context, order, null);
         }
 
         public void UpdateOrderProduct()
         {
             try
             {
-                MoveToOrderProductPage(context, Selected());
+                MoveToOrderProductPage(context, order, Selected());
             }
             catch (Exception ex)
             {
