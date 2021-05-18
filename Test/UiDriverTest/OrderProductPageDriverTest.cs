@@ -46,32 +46,6 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
-        public void TestSelected()
-        {
-            List<ProductView> products = new List<ProductView>();
-            products.Add(new ProductView { Name = "Test1", Price = 10 });
-            products.Add(new ProductView { Name = "Test2", Price = 15 });
-            products.Add(new ProductView { Name = "Test3", Price = 23 });
-            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
-            driver.Selected = () => products[1];
-
-            ProductView product = driver.Selected();
-
-            Assert.Equal("Test2", product.Name);
-            Assert.Equal(15, product.Price);
-        }
-
-        [Fact]
-        public void TestCount()
-        {
-            OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
-
-            driver.Count = () => 10;
-
-            Assert.Equal(10, driver.Count());
-        }
-
-        [Fact]
         public void TestGetSum()
         {
             List<ProductView> products = new List<ProductView>();
