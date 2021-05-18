@@ -57,5 +57,30 @@ namespace Test.UiDriverTest
             Assert.Equal("Apple", item.Name);
             Assert.Equal(9, item.Price);
         }
+
+        [Fact]
+        public void TestMethodMoveToProductPage()
+        {
+            string message = "";
+            ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.Selected = () => new ProductView();
+            driver.MoveToProductPage =
+                (context, product) =>
+                {
+                    if (product == null)
+                    {
+                        message += "!";
+                    }
+                    else
+                    {
+                        message += "~";
+                    }
+                };
+
+            driver.AddProduct();
+            driver.UpdateProduct();
+
+            Assert.Equal("!~", message);
+        }
     }
 }
