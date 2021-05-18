@@ -28,7 +28,19 @@ namespace UiDriver
 
         public int GetSum()
         {
-            return Selected().Price * Count();
+            try
+            {
+                if (Count() <= 0)
+                {
+                    throw new Exception("Invalid value");
+                }
+
+                return Selected().Price * Count();
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
         public ProductView GetSelectedProduct()

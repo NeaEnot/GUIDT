@@ -54,6 +54,10 @@ namespace Test.UiDriverTest
             driver.Count = () => 10;
 
             Assert.Equal(150, driver.GetSum());
+
+            driver.Count = () => -1;
+
+            Assert.Equal(0, driver.GetSum());
         }
 
         [Fact]
