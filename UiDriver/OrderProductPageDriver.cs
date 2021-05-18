@@ -12,10 +12,12 @@ namespace UiDriver
         #endregion
 
         private OrderView order;
+        private OrderProductView orderProduct;
 
         public OrderProductPageDriver(UiContext context, OrderView order, OrderProductView orderProduct) : base(context)
         {
             this.order = order;
+            this.orderProduct = orderProduct ?? new OrderProductView { Id = -1 };
         }
 
         public List<ProductView> GetAllProducts()
@@ -30,14 +32,15 @@ namespace UiDriver
 
         public void SaveOrderProduct()
         {
-            order.OrderProducts.Add(
-                new OrderProductView
-                {
-                    ProductId = Selected().Id,
-                    ProductName = Selected().Name,
-                    Price = Selected().Price,
-                    Count = Count()
-                });
+            orderProduct.ProductId = Selected().Id;
+            orderProduct.ProductName = Selected().Name;
+            orderProduct.Price = Selected().Price;
+            orderProduct.Count = Count();
+
+            if (orderProduct.Id < 0)
+            {
+                order.OrderProducts.Add(orderProduct);
+            }
         }
     }
 }
