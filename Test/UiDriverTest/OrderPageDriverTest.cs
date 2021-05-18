@@ -110,9 +110,11 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodSaveCreatedOrder()
         {
+            string message = "";
             OrderLogic logicO = new OrderLogic();
             ProductLogic logicP = new ProductLogic();
             OrderPageDriver driver = new OrderPageDriver(new UiContext(logicO, logicP), null);
+            driver.ShowInfoMessage = (msg) => { message = msg; };
 
             try
             {
@@ -127,6 +129,7 @@ namespace Test.UiDriverTest
 
                 Assert.Single(list);
                 Assert.Single(list[0].OrderProducts);
+                Assert.Equal("Order was created", message);
             }
             finally
             {

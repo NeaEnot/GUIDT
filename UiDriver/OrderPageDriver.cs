@@ -76,6 +76,7 @@ namespace UiDriver
             if (order.Id < 0)
             {
                 context.OrderLogic.Create(model);
+                ShowInfoMessage("Order was created");
             }
             else
             {
