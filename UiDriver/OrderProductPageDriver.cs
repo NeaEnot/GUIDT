@@ -51,6 +51,10 @@ namespace UiDriver
                 {
                     throw new Exception("Product is not selected");
                 }
+                if (Count() <= 0)
+                {
+                    throw new Exception("Invalid value");
+                }
 
                 orderProduct.ProductId = Selected().Id;
                 orderProduct.ProductName = Selected().Name;
