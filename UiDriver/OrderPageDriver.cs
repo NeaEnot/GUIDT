@@ -13,7 +13,7 @@ namespace UiDriver
         public Func<OrderProductView> Selected { private get; set; }
         #endregion
 
-        public OrderView order;
+        private OrderView order;
 
         public OrderPageDriver(UiContext context, OrderView order)
         {

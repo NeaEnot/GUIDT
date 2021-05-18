@@ -10,16 +10,6 @@ namespace Test.UiDriverTest
     public class OrderPageDriverTest
     {
         [Fact]
-        public void TestConstructor()
-        {
-            OrderPageDriver driver1 = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView { Id = 10 });
-            OrderPageDriver driver2 = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), null);
-
-            Assert.Equal(10, driver1.order.Id);
-            Assert.Equal(-1, driver2.order.Id);
-        }
-
-        [Fact]
         public void TestGetAllOrderProducts()
         {
             OrderView order = new OrderView();
