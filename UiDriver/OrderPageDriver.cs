@@ -9,6 +9,7 @@ namespace UiDriver
         #region сustomizableMethods
         public Action<UiContext, OrderProductView> MoveToOrderProductPage { private get; set; }
         public Func<OrderProductView> Selected { get; set; }
+        public Action<string> ShowErrorMessage { private get; set; }
         #endregion
 
         public OrderView order;
@@ -27,7 +28,15 @@ namespace UiDriver
 
         public void DeleteOrderProduct()
         {
-            order.OrderProducts.Remove(Selected());
+            try
+            {
+                OrderProductView op = Selected();
+                order.OrderProducts.Remove(op);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void AddOrderProduct()
@@ -37,7 +46,14 @@ namespace UiDriver
 
         public void UpdateOrderProduct()
         {
-            MoveToOrderProductPage(context, Selected());
+            try
+            {
+                MoveToOrderProductPage(context, Selected());
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
     }
 }

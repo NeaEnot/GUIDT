@@ -103,5 +103,23 @@ namespace Test.UiDriverTest
 
             Assert.Equal("!~!", msg);
         }
+
+        [Fact]
+        public void TestExceptionInSelected()
+        {
+            string message = "";
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
+
+            driver.MoveToOrderProductPage = (context, orderProduct) => { };
+            driver.Selected = () => (new List<OrderProductView>())[0];
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.UpdateOrderProduct();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+            message = "";
+
+            driver.DeleteOrderProduct();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+        }
     }
 }
