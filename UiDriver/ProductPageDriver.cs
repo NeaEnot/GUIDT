@@ -1,7 +1,6 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace UiDriver
 {
@@ -15,6 +14,16 @@ namespace UiDriver
         public ProductPageDriver(UiContext context, ProductView product) : base(context)
         {
 
+        }
+
+        public void Save()
+        {
+            context.ProductLogic.Create(
+                new ProductBinding
+                {
+                    Name = ProductName(),
+                    Price = ProductPrice()
+                });
         }
     }
 }
