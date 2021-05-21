@@ -117,5 +117,34 @@ namespace Test.UiDriverTest
                 logic.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestIncorrectPrice()
+        {
+            List<string> messages = new List<string>();
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), logic), null);
+                driver.ShowErrorMessage = (msg) => messages.Add(msg);
+
+                driver.ProductName = () => "Ananas";
+                driver.ProductPrice = () => 0;
+                driver.Save();
+
+                driver.ProductName = () => "Banan";
+                driver.ProductPrice = () => -1;
+                driver.Save();
+
+                Assert.Equal(2, messages.Count);
+                Assert.Equal("Incorrect price", messages[0]);
+                Assert.Equal("Incorrect price", messages[1]);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
     }
 }

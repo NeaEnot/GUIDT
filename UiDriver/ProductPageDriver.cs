@@ -45,6 +45,11 @@ namespace UiDriver
                     throw new Exception("Field name is empty");
                 }
 
+                if (model.Price <= 0)
+                {
+                    throw new Exception("Incorrect price");
+                }
+
                 if (product.Id < 0)
                 {
                     context.ProductLogic.Create(model);
