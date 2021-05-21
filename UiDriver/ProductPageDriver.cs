@@ -41,6 +41,7 @@ namespace UiDriver
             if (product.Id < 0)
             {
                 context.ProductLogic.Create(model);
+                ShowInfoMessage("Product was created");
             }
             else
             {
