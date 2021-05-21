@@ -91,5 +91,17 @@ namespace Test.UiDriverTest
             Assert.Equal("", name);
             Assert.Equal(0, price);
         }
+
+        [Fact]
+        public void TestGetFullProductData()
+        {
+            ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new ProductView { Name = "Banan", Price = 13 });
+
+            string name = driver.GetName();
+            int price = driver.GetPrice();
+
+            Assert.Equal("Banan", name);
+            Assert.Equal(13, price);
+        }
     }
 }
