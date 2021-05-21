@@ -116,5 +116,18 @@ namespace Test.UiDriverTest
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", messages[0]);
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", messages[1]);
         }
+
+        [Fact]
+        public void TestExceptionMoveToProductPage()
+        {
+            List<string> messages = new List<string>();
+            ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.MoveToProductPage = null;
+            driver.ShowErrorMessage = (msg) => { messages.Add(msg); };
+
+            driver.AddProduct();
+
+            Assert.Equal("Object reference not set to an instance of an object.", messages[0]);
+        }
     }
 }

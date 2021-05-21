@@ -22,7 +22,14 @@ namespace UiDriver
 
         public void AddProduct()
         {
-            MoveToProductPage(context, null);
+            try
+            {
+                MoveToProductPage(context, null);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void UpdateProduct()
