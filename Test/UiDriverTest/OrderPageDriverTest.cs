@@ -80,24 +80,6 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
-        public void TestExceptionInSelected()
-        {
-            string message = "";
-            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
-
-            driver.MoveToOrderProductPage = (context, order, orderProduct) => { };
-            driver.Selected = () => (new List<OrderProductView>())[0];
-            driver.ShowErrorMessage = (msg) => { message = msg; };
-
-            driver.UpdateOrderProduct();
-            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
-            message = "";
-
-            driver.DeleteOrderProduct();
-            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
-        }
-
-        [Fact]
         public void TestMethodSaveCreatedOrder()
         {
             string message = "";
@@ -180,6 +162,37 @@ namespace Test.UiDriverTest
             {
                 logicO.Delete(null);
             }
+        }
+
+        [Fact]
+        public void TestExceptionInSelected()
+        {
+            string message = "";
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
+
+            driver.MoveToOrderProductPage = (context, order, orderProduct) => { };
+            driver.Selected = () => (new List<OrderProductView>())[0];
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.UpdateOrderProduct();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+            message = "";
+
+            driver.DeleteOrderProduct();
+            Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
+        }
+
+        [Fact]
+        public void TestExceptionMoveToOrderProductPage()
+        {
+            string message = "";
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
+            driver.MoveToOrderProductPage = null;
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.AddOrderProduct();
+
+            Assert.Equal("Object reference not set to an instance of an object.", message);
         }
     }
 }

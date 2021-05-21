@@ -1,5 +1,4 @@
-﻿	Обработка ошибок в OrderPageDriver.AddOrderProduct
-	Обработка ошибок в OrderPageDriver.SaveOrder
+﻿	Обработка ошибок в OrderPageDriver.SaveOrder
 	Обработка ошибок в OrdersPageDriver.AddOrder
 	Обработка ошибок в OrdersPageDriver.ToProducts
 	Создать Windows Forms проект
@@ -132,5 +131,5 @@ GetSum() должен возвращать 0 при ошибке
 - Вывод сообщения о некорректной цене
 - Заменить уровень доступа свойств в UiDriver на internal
 - Обработка ошибок в ProductsPageDriver.AddProduct
-- 
+- Обработка ошибок в OrderPageDriver.AddOrderProduct
 - 

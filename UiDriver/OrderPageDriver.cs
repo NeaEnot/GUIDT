@@ -40,7 +40,14 @@ namespace UiDriver
 
         public void AddOrderProduct()
         {
-            MoveToOrderProductPage(context, order, null);
+            try
+            {
+                MoveToOrderProductPage(context, order, null);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void UpdateOrderProduct()
