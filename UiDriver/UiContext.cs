@@ -4,9 +4,9 @@ namespace UiDriver
 {
     public class UiContext
     {
-        public IOrderLogic OrderLogic { get; private set; }
+        internal IOrderLogic OrderLogic { get; private set; }
 
-        public IProductLogic ProductLogic { get; private set; }
+        internal IProductLogic ProductLogic { get; private set; }
 
         public UiContext(IOrderLogic orderLogic, IProductLogic productLogic)
         {
