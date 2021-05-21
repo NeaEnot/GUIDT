@@ -64,36 +64,42 @@ namespace UiDriver
 
         public void SaveOrder()
         {
-            OrderBinding model =
-                new OrderBinding
+            try
+            {
+                OrderBinding model =
+                    new OrderBinding
+                    {
+                        Id = order.Id,
+                        OrderProducts =
+                            order.OrderProducts
+                            .Select(rec =>
+                            new OrderProductBinding
+                            {
+                                ProductId = rec.ProductId,
+                                Count = rec.Count
+                            })
+                            .ToList()
+                    };
+
+                if (model.OrderProducts.Count <= 0)
                 {
-                    Id = order.Id,
-                    OrderProducts =
-                        order.OrderProducts
-                        .Select(rec =>
-                        new OrderProductBinding
-                        {
-                            ProductId = rec.ProductId,
-                            Count = rec.Count
-                        })
-                        .ToList()
-                };
+                    throw new Exception("List of products is empty");
+                }
 
-            if (model.OrderProducts.Count <= 0)
-            {
-                ShowErrorMessage("List of products is empty");
-                return;
+                if (order.Id < 0)
+                {
+                    context.OrderLogic.Create(model);
+                    ShowInfoMessage("Order was created");
+                }
+                else
+                {
+                    context.OrderLogic.Update(model);
+                    ShowInfoMessage("Order №" + model.Id + " was updated");
+                }
             }
-
-            if (order.Id < 0)
+            catch (Exception ex)
             {
-                context.OrderLogic.Create(model);
-                ShowInfoMessage("Order was created");
-            }
-            else
-            {
-                context.OrderLogic.Update(model);
-                ShowInfoMessage("Order №" + model.Id + " was updated");
+                ShowErrorMessage(ex.Message);
             }
         }
     }

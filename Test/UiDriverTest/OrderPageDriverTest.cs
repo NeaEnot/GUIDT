@@ -2,6 +2,7 @@
 using Core.Models.View;
 using ListImplement.Implements;
 using System.Collections.Generic;
+using Test.Helpers;
 using UiDriver;
 using Xunit;
 
@@ -193,6 +194,20 @@ namespace Test.UiDriverTest
             driver.AddOrderProduct();
 
             Assert.Equal("Object reference not set to an instance of an object.", message);
+        }
+
+        [Fact]
+        public void TestExceptionInSave()
+        {
+            string message = "";
+            OrderView order = new OrderView();
+            order.OrderProducts.Add(new OrderProductView());
+            OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogicNI(), new ProductLogic()), order);
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.SaveOrder();
+
+            Assert.Equal("The method or operation is not implemented.", message);
         }
     }
 }
