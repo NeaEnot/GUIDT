@@ -46,6 +46,7 @@ namespace UiDriver
             else
             {
                 context.ProductLogic.Update(model);
+                ShowInfoMessage("Product was updated");
             }
         }
     }

@@ -61,6 +61,7 @@ namespace Test.UiDriverTest
         [Fact]
         public void TestMethodSaveUpdatedProduct()
         {
+            string message = "";
             ProductLogic logic = new ProductLogic();
 
             try
@@ -69,6 +70,7 @@ namespace Test.UiDriverTest
                 ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), logic), logic.Read(null)[0]);
                 driver.ProductName = () => "Banan";
                 driver.ProductPrice = () => 38;
+                driver.ShowInfoMessage = (msg) => message = msg;
 
                 driver.Save();
                 List<ProductView> list = logic.Read(null);
@@ -76,6 +78,7 @@ namespace Test.UiDriverTest
                 Assert.Single(list);
                 Assert.Equal("Banan", list[0].Name);
                 Assert.Equal(38, list[0].Price);
+                Assert.Equal("Product was updated", message);
             }
             finally
             {
