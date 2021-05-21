@@ -1,4 +1,5 @@
-﻿using Core.Models.View;
+﻿using Core.Models.Binding;
+using Core.Models.View;
 using ListImplement.Implements;
 using System.Collections.Generic;
 using UiDriver;
@@ -38,6 +39,31 @@ namespace Test.UiDriverTest
             try
             {
                 ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), logic), null);
+                driver.ProductName = () => "Banan";
+                driver.ProductPrice = () => 38;
+
+                driver.Save();
+                List<ProductView> list = logic.Read(null);
+
+                Assert.Single(list);
+                Assert.Equal("Banan", list[0].Name);
+                Assert.Equal(38, list[0].Price);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestMethodSaveUpdatedProduct()
+        {
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                logic.Create(new ProductBinding { Name = "Ananas", Price = 87 });
+                ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), logic), logic.Read(null)[0]);
                 driver.ProductName = () => "Banan";
                 driver.ProductPrice = () => 38;
 
