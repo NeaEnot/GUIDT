@@ -2,6 +2,7 @@
 using Core.Models.Binding;
 using Core.Models.View;
 using ListImplement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,12 @@ namespace ListImplement.Implements
         public void Create(ProductBinding model)
         {
             Product product = MapProduct(model);
+
+            if (context.Products.Count(rec => rec.Name == model.Name) > 0)
+            {
+                throw new Exception("Product with name " + model.Name + " already exist");
+            }
+
             product.Id = context.Products.Count > 0 ? context.Products.Max(rec => rec.Id) + 1 : 1;
             context.Products.Add(product);
         }

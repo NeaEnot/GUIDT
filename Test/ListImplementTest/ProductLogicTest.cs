@@ -1,6 +1,7 @@
 ﻿using Core.Models.Binding;
 using Core.Models.View;
 using ListImplement.Implements;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -131,6 +132,41 @@ namespace Test.ListImplementTest
                 Assert.Equal(1, list[0].Id);
                 Assert.Equal("Test1", list[0].Name);
                 Assert.Equal(10, list[0].Price);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
+        public void TestCreateSameName()
+        {
+            ProductLogic logic = new ProductLogic();
+            string message = "";
+
+            try
+            {
+                ProductBinding model1 = new ProductBinding { Name = "Test", Price = 10 };
+                logic.Create(model1);
+
+                try
+                {
+                    ProductBinding model2 = new ProductBinding { Name = "Test", Price = 10 };
+                    logic.Create(model2);
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                }
+
+                List<ProductView> list = logic.Read(null);
+
+                Assert.Single(list);
+                Assert.Equal(1, list[0].Id);
+                Assert.Equal("Test", list[0].Name);
+                Assert.Equal(10, list[0].Price);
+                Assert.Equal("Product with name Test already exist", message);
             }
             finally
             {

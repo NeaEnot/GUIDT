@@ -50,8 +50,8 @@ namespace Test.ListImplementTest
                 OrderBinding model = new OrderBinding { Id = 1, OrderProducts = new List<OrderProductBinding>() };
                 model.OrderProducts.Add(new OrderProductBinding { Count = 10, ProductId = 1 });
                 model.OrderProducts.Add(new OrderProductBinding { Count = 13, ProductId = 2 });
-                logicP.Create(new ProductBinding { Id = 1, Price = 10 });
-                logicP.Create(new ProductBinding { Id = 2, Price = 5 });
+                logicP.Create(new ProductBinding { Id = 1, Name = "0", Price = 10 });
+                logicP.Create(new ProductBinding { Id = 2, Name = "1", Price = 5 });
                 logicO.Create(model);
 
                 List<OrderView> list = logicO.Read(null);
@@ -190,8 +190,8 @@ namespace Test.ListImplementTest
                 model1.OrderProducts.Add(new OrderProductBinding { ProductId = 1 });
                 model1.OrderProducts.Add(new OrderProductBinding { ProductId = 2 });
                 model2.OrderProducts.Add(new OrderProductBinding { ProductId = 1 });
-                logicP.Create(new ProductBinding());
-                logicP.Create(new ProductBinding());
+                logicP.Create(new ProductBinding { Name = "0" });
+                logicP.Create(new ProductBinding { Name = "1" });
                 logicO.Create(model1);
                 logicO.Create(model2);
 
@@ -219,8 +219,8 @@ namespace Test.ListImplementTest
 
             try
             {
-                logicP.Create(new ProductBinding());
-                logicP.Create(new ProductBinding());
+                logicP.Create(new ProductBinding { Name = "0" });
+                logicP.Create(new ProductBinding { Name = "1" });
                 OrderBinding model = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
                 model.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 3 });
                 logicO.Create(model);
@@ -280,8 +280,8 @@ namespace Test.ListImplementTest
 
             try
             {
-                logicP.Create(new ProductBinding());
-                logicP.Create(new ProductBinding());
+                logicP.Create(new ProductBinding { Name = "0" });
+                logicP.Create(new ProductBinding { Name = "1" });
                 OrderBinding model = new OrderBinding { OrderProducts = new List<OrderProductBinding>() };
                 model.OrderProducts.Add(new OrderProductBinding { ProductId = 1, Count = 3 });
                 logicO.Create(model);
