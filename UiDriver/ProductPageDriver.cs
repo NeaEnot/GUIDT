@@ -30,23 +30,35 @@ namespace UiDriver
 
         public void Save()
         {
-            ProductBinding model =
-                new ProductBinding
-                {
-                    Id = product.Id,
-                    Name = ProductName(),
-                    Price = ProductPrice()
-                };
+            try
+            {
+                ProductBinding model =
+                    new ProductBinding
+                    {
+                        Id = product.Id,
+                        Name = ProductName(),
+                        Price = ProductPrice()
+                    };
 
-            if (product.Id < 0)
-            {
-                context.ProductLogic.Create(model);
-                ShowInfoMessage("Product was created");
+                if (string.IsNullOrWhiteSpace(model.Name))
+                {
+                    throw new Exception("Field name is empty");
+                }
+
+                if (product.Id < 0)
+                {
+                    context.ProductLogic.Create(model);
+                    ShowInfoMessage("Product was created");
+                }
+                else
+                {
+                    context.ProductLogic.Update(model);
+                    ShowInfoMessage("Product №" + model.Id + " was updated");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                context.ProductLogic.Update(model);
-                ShowInfoMessage("Product was updated");
+                ShowErrorMessage(ex.Message);
             }
         }
     }

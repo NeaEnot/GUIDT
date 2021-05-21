@@ -56,7 +56,7 @@ namespace Test.UiDriverTest
                 Assert.Single(list);
                 Assert.Equal("Banan", list[0].Name);
                 Assert.Equal(38, list[0].Price);
-                Assert.Equal("Product was updated", message);
+                Assert.Equal("Product №1 was updated", message);
             }
             finally
             {
@@ -86,6 +86,36 @@ namespace Test.UiDriverTest
 
             Assert.Equal("Banan", name);
             Assert.Equal(13, price);
+        }
+
+        [Fact]
+        public void TestIncorrectProductName()
+        {
+            List<string> messages = new List<string>();
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                logic.Create(new ProductBinding { Name = "Ananas", Price = 87 });
+                ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), logic), null);
+                driver.ShowErrorMessage = (msg) => messages.Add(msg);
+
+                driver.ProductName = () => "Ananas";
+                driver.ProductPrice = () => 87;
+                driver.Save();
+
+                driver.ProductName = () => " ";
+                driver.ProductPrice = () => 87;
+                driver.Save();
+
+                Assert.Equal(2, messages.Count);
+                Assert.Equal("Product with name Ananas already exist", messages[0]);
+                Assert.Equal("Field name is empty", messages[1]);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
         }
     }
 }
