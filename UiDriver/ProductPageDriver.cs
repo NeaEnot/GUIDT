@@ -15,7 +15,17 @@ namespace UiDriver
 
         public ProductPageDriver(UiContext context, ProductView product) : base(context)
         {
-            this.product = product ?? new ProductView { Id = -1 };
+            this.product = product ?? new ProductView { Id = -1, Name = "", Price = 0 };
+        }
+
+        public string GetName()
+        {
+            return product.Name;
+        }
+
+        public int GetPrice()
+        {
+            return product.Price;
         }
 
         public void Save()

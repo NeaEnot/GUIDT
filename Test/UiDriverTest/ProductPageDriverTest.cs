@@ -79,5 +79,17 @@ namespace Test.UiDriverTest
                 logic.Delete(null);
             }
         }
+
+        [Fact]
+        public void TestGetEmptyProductData()
+        {
+            ProductPageDriver driver = new ProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), null);
+            
+            string name = driver.GetName();
+            int price = driver.GetPrice();
+
+            Assert.Equal("", name);
+            Assert.Equal(0, price);
+        }
     }
 }
