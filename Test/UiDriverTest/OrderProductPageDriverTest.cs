@@ -50,7 +50,7 @@ namespace Test.UiDriverTest
         {
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
 
-            driver.Selected = () => new ProductView { Name = "Test2", Price = 15 };
+            driver.SelectedProduct = () => new ProductView { Name = "Test2", Price = 15 };
             driver.Count = () => 10;
 
             Assert.Equal(150, driver.GetSum());
@@ -90,7 +90,7 @@ namespace Test.UiDriverTest
         {
             OrderView order = new OrderView();
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order, null);
-            driver.Selected = () => new ProductView { Name = "Banan", Price = 11 };
+            driver.SelectedProduct = () => new ProductView { Name = "Banan", Price = 11 };
             driver.Count = () => 3;
 
             driver.SaveOrderProduct();
@@ -107,7 +107,7 @@ namespace Test.UiDriverTest
             OrderView order = new OrderView();
             order.OrderProducts.Add(new OrderProductView { ProductName = "Banan", Price = 11 });
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order, order.OrderProducts[0]);
-            driver.Selected = () => new ProductView { Name = "Ananas", Price = 14 };
+            driver.SelectedProduct = () => new ProductView { Name = "Ananas", Price = 14 };
             driver.Count = () => 1;
 
             driver.SaveOrderProduct();
@@ -123,7 +123,7 @@ namespace Test.UiDriverTest
         {
             string message = "";
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
-            driver.Selected = () => null;
+            driver.SelectedProduct = () => null;
             driver.Count = () => 3;
             driver.ShowErrorMessage = (msg) => message = msg;
 
@@ -137,7 +137,7 @@ namespace Test.UiDriverTest
         {
             string message = "";
             OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView(), null);
-            driver.Selected = () => new ProductView();
+            driver.SelectedProduct = () => new ProductView();
             driver.Count = () => (new List<int>())[0];
             driver.ShowErrorMessage = (msg) => message = msg;
 

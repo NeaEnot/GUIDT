@@ -22,7 +22,7 @@ namespace Test.UiDriverTest
                 driver.ProductPrice = () => 38;
                 driver.ShowInfoMessage = (msg) => message = msg;
 
-                driver.Save();
+                driver.SaveProduct();
                 List<ProductView> list = logic.Read(null);
 
                 Assert.Single(list);
@@ -50,7 +50,7 @@ namespace Test.UiDriverTest
                 driver.ProductPrice = () => 38;
                 driver.ShowInfoMessage = (msg) => message = msg;
 
-                driver.Save();
+                driver.SaveProduct();
                 List<ProductView> list = logic.Read(null);
 
                 Assert.Single(list);
@@ -102,11 +102,11 @@ namespace Test.UiDriverTest
 
                 driver.ProductName = () => "Ananas";
                 driver.ProductPrice = () => 87;
-                driver.Save();
+                driver.SaveProduct();
 
                 driver.ProductName = () => " ";
                 driver.ProductPrice = () => 87;
-                driver.Save();
+                driver.SaveProduct();
 
                 Assert.Equal(2, messages.Count);
                 Assert.Equal("Product with name Ananas already exist", messages[0]);
@@ -131,11 +131,11 @@ namespace Test.UiDriverTest
 
                 driver.ProductName = () => "Ananas";
                 driver.ProductPrice = () => 0;
-                driver.Save();
+                driver.SaveProduct();
 
                 driver.ProductName = () => "Banan";
                 driver.ProductPrice = () => -1;
-                driver.Save();
+                driver.SaveProduct();
 
                 Assert.Equal(2, messages.Count);
                 Assert.Equal("Incorrect price", messages[0]);

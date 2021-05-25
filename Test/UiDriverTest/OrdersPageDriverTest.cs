@@ -68,7 +68,7 @@ namespace Test.UiDriverTest
                 orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
                 orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
                 orderLogic.Create(new OrderBinding { OrderProducts = new List<OrderProductBinding>() });
-                driver.Selected = () => orderLogic.Read(null)[1];
+                driver.SelectedOrder = () => orderLogic.Read(null)[1];
 
                 driver.DeleteOrder();
                 List<OrderView> list = driver.GetAllOrders();
@@ -98,7 +98,7 @@ namespace Test.UiDriverTest
                         msg += "!";
                     }
                 };
-            driver.Selected = () => new OrderView { Id = 3 };
+            driver.SelectedOrder = () => new OrderView { Id = 3 };
 
             driver.UpdateOrder();
             driver.UpdateOrder();
@@ -126,7 +126,7 @@ namespace Test.UiDriverTest
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
             driver.MoveToOrderPage = (context, order) => {};
-            driver.Selected = () => (new List<OrderView>())[0];
+            driver.SelectedOrder = () => (new List<OrderView>())[0];
             driver.ShowErrorMessage = (msg) => { message = msg; };
 
             driver.UpdateOrder();

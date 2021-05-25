@@ -10,7 +10,7 @@ namespace UiDriver
         #region сustomizableMethods
         public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
         public Action MoveToProductsPage { private get; set; }
-        public Func<OrderView> Selected { private get; set; }
+        public Func<OrderView> SelectedOrder { private get; set; }
         #endregion
 
         public OrdersPageDriver(UiContext context) : base(context)
@@ -49,7 +49,7 @@ namespace UiDriver
         {
             try
             {
-                MoveToOrderPage(context, Selected());
+                MoveToOrderPage(context, SelectedOrder());
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace UiDriver
         {
             try
             {
-                int id = Selected().Id;
+                int id = SelectedOrder().Id;
                 context.OrderLogic.Delete(new OrderBinding { Id = id });
                 ShowInfoMessage("Order №" + id + " was deleted");
             }

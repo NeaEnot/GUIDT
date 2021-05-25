@@ -8,7 +8,7 @@ namespace UiDriver
     public class OrderProductPageDriver: PageDriver
     {
         #region сustomizableMethods
-        public Func<ProductView> Selected { private get; set; }
+        public Func<ProductView> SelectedProduct { private get; set; }
         public Func<int> Count { private get; set; }
         #endregion
 
@@ -35,7 +35,7 @@ namespace UiDriver
                     throw new Exception("Invalid value");
                 }
 
-                return Selected().Price * Count();
+                return SelectedProduct().Price * Count();
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace UiDriver
         {
             try
             {
-                if (Selected() == null)
+                if (SelectedProduct() == null)
                 {
                     throw new Exception("Product is not selected");
                 }
@@ -68,9 +68,9 @@ namespace UiDriver
                     throw new Exception("Invalid value");
                 }
 
-                orderProduct.ProductId = Selected().Id;
-                orderProduct.ProductName = Selected().Name;
-                orderProduct.Price = Selected().Price;
+                orderProduct.ProductId = SelectedProduct().Id;
+                orderProduct.ProductName = SelectedProduct().Name;
+                orderProduct.Price = SelectedProduct().Price;
                 orderProduct.Count = Count();
 
                 if (orderProduct.Id < 0)

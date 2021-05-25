@@ -28,7 +28,7 @@ namespace UiDriver
             return product.Price;
         }
 
-        public void Save()
+        public void SaveProduct()
         {
             try
             {

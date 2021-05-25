@@ -9,7 +9,7 @@ namespace UiDriver
     {
         #region сustomizableMethods
         public Action<UiContext, ProductView> MoveToProductPage { private get; set; }
-        public Func<ProductView> Selected { private get; set; }
+        public Func<ProductView> SelectedProduct { private get; set; }
         #endregion
 
         public ProductsPageDriver(UiContext context) : base(context)
@@ -36,7 +36,7 @@ namespace UiDriver
         {
             try
             {
-                MoveToProductPage(context, Selected());
+                MoveToProductPage(context, SelectedProduct());
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace UiDriver
         {
             try
             {
-                int id = Selected().Id;
+                int id = SelectedProduct().Id;
                 context.ProductLogic.Delete(new ProductBinding { Id = id });
                 ShowInfoMessage("Product №" + id + " was deleted");
             }

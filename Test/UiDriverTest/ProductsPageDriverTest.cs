@@ -50,7 +50,7 @@ namespace Test.UiDriverTest
         {
             string message = "";
             ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-            driver.Selected = () => new ProductView();
+            driver.SelectedProduct = () => new ProductView();
             driver.MoveToProductPage =
                 (context, product) =>
                 {
@@ -83,7 +83,7 @@ namespace Test.UiDriverTest
                 logic.Create(new ProductBinding { Name = "Test3", Price = 23 });
                 ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), logic));
                 List<ProductView> list = driver.GetAllProducts();
-                driver.Selected = () => list[1];
+                driver.SelectedProduct = () => list[1];
                 driver.ShowInfoMessage = (msg) => { message = msg; };
 
                 driver.DeleteProduct();
@@ -107,7 +107,7 @@ namespace Test.UiDriverTest
         {
             List<string> messages = new List<string>();
             ProductsPageDriver driver = new ProductsPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
-            driver.Selected = () => (new List<ProductView>())[0];
+            driver.SelectedProduct = () => (new List<ProductView>())[0];
             driver.ShowErrorMessage = (msg) => { messages.Add(msg); };
 
             driver.UpdateProduct();

@@ -40,7 +40,7 @@ namespace Test.UiDriverTest
             order.OrderProducts.Add(new OrderProductView { Id = 3, ProductId = 3, Price = 25, Count = 1, ProductName = "Test2" });
             order.OrderProducts.Add(new OrderProductView { Id = 5, ProductId = 6, Price = 1, Count = 100, ProductName = "Test3" });
             OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), order);
-            driver.Selected = () => order.OrderProducts[1];
+            driver.SelectedOrderProduct = () => order.OrderProducts[1];
 
             driver.DeleteOrderProduct();
             List<OrderProductView> list = driver.GetAllOrderProducts();
@@ -71,7 +71,7 @@ namespace Test.UiDriverTest
                         msg += "~";
                     }
                 };
-            driver.Selected = () => new OrderProductView();
+            driver.SelectedOrderProduct = () => new OrderProductView();
 
             driver.AddOrderProduct();
             driver.UpdateOrderProduct();
@@ -172,7 +172,7 @@ namespace Test.UiDriverTest
             OrderPageDriver driver = new OrderPageDriver(new UiContext(new OrderLogic(), new ProductLogic()), new OrderView());
 
             driver.MoveToOrderProductPage = (context, order, orderProduct) => { };
-            driver.Selected = () => (new List<OrderProductView>())[0];
+            driver.SelectedOrderProduct = () => (new List<OrderProductView>())[0];
             driver.ShowErrorMessage = (msg) => { message = msg; };
 
             driver.UpdateOrderProduct();
