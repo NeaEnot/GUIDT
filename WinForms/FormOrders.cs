@@ -12,14 +12,12 @@ namespace WinForms
 {
     public partial class FormOrders : Form
     {
-        private UiContext context;
         private OrdersPageDriver driver;
 
         public FormOrders(UiContext context)
         {
             InitializeComponent();
 
-            this.context = context;
             driver = new OrdersPageDriver(context);
 
             ConfigureDriver();
@@ -35,7 +33,13 @@ namespace WinForms
             driver.ShowInfoMessage = (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); };
             driver.ShowErrorMessage = (msg) => { MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); };
 
-            driver.MoveToOrderPage = null;
+            driver.MoveToOrderPage = (context, order) =>
+            {
+                FormOrder form = new FormOrder(context, order);
+                form.ShowDialog();
+                LoadData();
+            };
+
             driver.MoveToProductsPage = null;
         }
 

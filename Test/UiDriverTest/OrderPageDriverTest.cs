@@ -97,9 +97,10 @@ namespace Test.UiDriverTest
                 driver.AddOrderProduct();
                 driver.AddOrderProduct();
 
-                driver.SaveOrder();
+                bool result = driver.SaveOrder();
                 List<OrderView> list = logicO.Read(null);
 
+                Assert.True(result);
                 Assert.Single(list);
                 Assert.Single(list[0].OrderProducts);
                 Assert.Equal("Order was created", message);
@@ -129,9 +130,10 @@ namespace Test.UiDriverTest
                 driver.AddOrderProduct();
                 driver.AddOrderProduct();
 
-                driver.SaveOrder();
+                bool result = driver.SaveOrder();
                 List<OrderView> list = logicO.Read(null);
 
+                Assert.True(result);
                 Assert.Single(list);
                 Assert.Single(list[0].OrderProducts);
                 Assert.Equal("Order №1 was updated", message);
@@ -153,9 +155,10 @@ namespace Test.UiDriverTest
 
             try
             {
-                driver.SaveOrder();
+                bool result = driver.SaveOrder();
                 List<OrderView> list = logicO.Read(null);
 
+                Assert.False(result);
                 Assert.Empty(list);
                 Assert.Equal("List of products is empty", message);
             }

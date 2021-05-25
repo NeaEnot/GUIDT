@@ -62,7 +62,7 @@ namespace UiDriver
             }
         }
 
-        public void SaveOrder()
+        public bool SaveOrder()
         {
             try
             {
@@ -90,16 +90,19 @@ namespace UiDriver
                 {
                     context.OrderLogic.Create(model);
                     ShowInfoMessage("Order was created");
+                    return true;
                 }
                 else
                 {
                     context.OrderLogic.Update(model);
                     ShowInfoMessage("Order №" + model.Id + " was updated");
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(ex.Message);
+                return false;
             }
         }
     }
