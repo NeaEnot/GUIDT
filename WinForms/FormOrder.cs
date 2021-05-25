@@ -2,12 +2,9 @@
 using Core.Models.View;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using UiDriver;
 
@@ -36,7 +33,12 @@ namespace WinForms
             driver.ShowInfoMessage = (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); };
             driver.ShowErrorMessage = (msg) => { MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); };
 
-            driver.MoveToOrderProductPage = null;
+            driver.MoveToOrderProductPage = (context, order, orderProduct) =>
+            {
+                FormOrderProduct form = new FormOrderProduct(context, order, orderProduct);
+                form.ShowDialog();
+                LoadData();
+            };
         }
 
         private void FormOrder_Load(object sender, EventArgs e)

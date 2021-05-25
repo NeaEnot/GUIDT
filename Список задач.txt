@@ -1,5 +1,4 @@
 ﻿	ProductPageDriver.SaveProduct должен возвращать bool
->	WinForms.FormOrderProduct
 	WinForms.FormProducts
 	WinForms.FormProduct
 	WPF.ProgramWindow
@@ -146,7 +145,7 @@ GetSum() должен возвращать 0 при ошибке
 - OrderPageDriver.SaveOrder должен возвращать bool
 - OrderProductPageDriver.SaveOrderProduct должен возвращать bool
 - WinForms.FormOrder
-- 
+- WinForms.FormOrderProduct
 - 
 - 
 - 
