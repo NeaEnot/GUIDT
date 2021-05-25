@@ -160,5 +160,17 @@ namespace Test.UiDriverTest
 
             Assert.Equal("Object reference not set to an instance of an object.", message);
         }
+
+        [Fact]
+        public void TestExceptionInMoveToProductsPage()
+        {
+            string message = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.ToProducts();
+
+            Assert.Equal("Object reference not set to an instance of an object.", message);
+        }
     }
 }

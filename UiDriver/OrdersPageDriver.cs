@@ -73,7 +73,14 @@ namespace UiDriver
 
         public void ToProducts()
         {
-            MoveToProductsPage();
+            try
+            {
+                MoveToProductsPage();
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
     }
 }
