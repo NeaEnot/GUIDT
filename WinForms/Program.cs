@@ -1,8 +1,7 @@
+using ListImplement.Implements;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using UiDriver;
 
 namespace WinForms
 {
@@ -14,10 +13,12 @@ namespace WinForms
         [STAThread]
         static void Main()
         {
+            UiContext context = new UiContext(new OrderLogic(), new ProductLogic());
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormOrders());
+            Application.Run(new FormOrders(context));
         }
     }
 }

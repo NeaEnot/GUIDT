@@ -1,5 +1,13 @@
-﻿	Создать Windows Forms проект
-	Создать WPF проект
+﻿	WinForms.FormOrder
+	WinForms.FormOrderProduct
+	WinForms.FormProducts
+	WinForms.FormProduct
+	WPF.ProgramWindow
+	WPF.OrdersWindow
+	WPF.OrderWindow
+	WPF.OrderProductWindow
+	WPF.ProductsWindow
+	WPF.ProductWindow
 ============================================================================
 Модель ProductView
 Модель OrderView
@@ -133,8 +141,8 @@ GetSum() должен возвращать 0 при ошибке
 - Обработка ошибок в OrdersPageDriver.AddOrder
 - Обработка ошибок в OrdersPageDriver.ToProducts
 - Привести названия методов UiDriver к одному стилю
-- 
-- 
+- WinForms.Program
+- WinForms.FormOrders
 - 
 - 
 - 

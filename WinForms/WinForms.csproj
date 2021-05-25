@@ -6,4 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\ListImplement\ListImplement.csproj" />
+    <ProjectReference Include="..\UiDriver\UiDriver.csproj" />
+  </ItemGroup>
+
 </Project>
