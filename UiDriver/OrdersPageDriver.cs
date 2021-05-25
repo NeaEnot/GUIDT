@@ -35,7 +35,14 @@ namespace UiDriver
 
         public void AddOrder()
         {
-            MoveToOrderPage(context, null);
+            try
+            {
+                MoveToOrderPage(context, null);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
 
         public void UpdateOrder()

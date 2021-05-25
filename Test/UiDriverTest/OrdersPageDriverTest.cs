@@ -148,5 +148,17 @@ namespace Test.UiDriverTest
 
             Assert.Equal("The method or operation is not implemented.", message);
         }
+
+        [Fact]
+        public void TestExceptionInMoveToOrderPage()
+        {
+            string message = "";
+            OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
+            driver.ShowErrorMessage = (msg) => { message = msg; };
+
+            driver.AddOrder();
+
+            Assert.Equal("Object reference not set to an instance of an object.", message);
+        }
     }
 }

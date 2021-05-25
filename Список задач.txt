@@ -1,5 +1,4 @@
-﻿	Обработка ошибок в OrdersPageDriver.AddOrder
-	Обработка ошибок в OrdersPageDriver.ToProducts
+﻿	Обработка ошибок в OrdersPageDriver.ToProducts
 	Привести названия методов UiDriver к одному стилю
 	Создать Windows Forms проект
 	Создать WPF проект
@@ -133,3 +132,19 @@ GetSum() должен возвращать 0 при ошибке
 Обработка ошибок в ProductsPageDriver.AddProduct
 Обработка ошибок в OrderPageDriver.AddOrderProduct
 Обработка ошибок в OrderPageDriver.SaveOrder
+- Обработка ошибок в OrdersPageDriver.AddOrder
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
