@@ -1,5 +1,4 @@
-﻿	OrderProductPageDriver.SaveOrderProduct должен возвращать bool
-	ProductPageDriver.SaveProduct должен возвращать bool
+﻿	ProductPageDriver.SaveProduct должен возвращать bool
 	WinForms.FormOrder
 	WinForms.FormOrderProduct
 	WinForms.FormProducts
@@ -146,7 +145,7 @@ GetSum() должен возвращать 0 при ошибке
 - WinForms.Program
 - WinForms.FormOrders
 - OrderPageDriver.SaveOrder должен возвращать bool
-- 
+- OrderProductPageDriver.SaveOrderProduct должен возвращать bool
 - 
 - 
 - 

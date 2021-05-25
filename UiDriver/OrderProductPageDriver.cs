@@ -55,7 +55,7 @@ namespace UiDriver
             }
         }
 
-        public void SaveOrderProduct()
+        public bool SaveOrderProduct()
         {
             try
             {
@@ -77,10 +77,13 @@ namespace UiDriver
                 {
                     order.OrderProducts.Add(orderProduct);
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(ex.Message);
+                return false;
             }
         }
     }

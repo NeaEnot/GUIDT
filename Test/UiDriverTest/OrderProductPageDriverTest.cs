@@ -93,8 +93,9 @@ namespace Test.UiDriverTest
             driver.SelectedProduct = () => new ProductView { Name = "Banan", Price = 11 };
             driver.Count = () => 3;
 
-            driver.SaveOrderProduct();
+            bool result = driver.SaveOrderProduct();
 
+            Assert.True(result);
             Assert.Single(order.OrderProducts);
             Assert.Equal("Banan", order.OrderProducts[0].ProductName);
             Assert.Equal(11, order.OrderProducts[0].Price);
@@ -110,8 +111,9 @@ namespace Test.UiDriverTest
             driver.SelectedProduct = () => new ProductView { Name = "Ananas", Price = 14 };
             driver.Count = () => 1;
 
-            driver.SaveOrderProduct();
+            bool result = driver.SaveOrderProduct();
 
+            Assert.True(result);
             Assert.Single(order.OrderProducts);
             Assert.Equal("Ananas", order.OrderProducts[0].ProductName);
             Assert.Equal(14, order.OrderProducts[0].Price);
@@ -127,8 +129,9 @@ namespace Test.UiDriverTest
             driver.Count = () => 3;
             driver.ShowErrorMessage = (msg) => message = msg;
 
-            driver.SaveOrderProduct();
+            bool result = driver.SaveOrderProduct();
 
+            Assert.False(result);
             Assert.Equal("Product is not selected", message);
         }
 
@@ -141,12 +144,14 @@ namespace Test.UiDriverTest
             driver.Count = () => (new List<int>())[0];
             driver.ShowErrorMessage = (msg) => message = msg;
 
-            driver.SaveOrderProduct();
+            bool result = driver.SaveOrderProduct();
+            Assert.False(result);
             Assert.Equal("Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')", message);
 
             driver.Count = () => 0;
 
-            driver.SaveOrderProduct();
+            result = driver.SaveOrderProduct();
+            Assert.False(result);
             Assert.Equal("Invalid value", message);
         }
     }
