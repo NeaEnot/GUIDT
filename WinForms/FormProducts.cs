@@ -36,7 +36,12 @@ namespace WinForms
             driver.ShowInfoMessage = (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); };
             driver.ShowErrorMessage = (msg) => { MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); };
 
-            driver.MoveToProductPage = null;
+            driver.MoveToProductPage = (context, product) =>
+            {
+                FormProduct form = new FormProduct(context, product);
+                form.ShowDialog();
+                LoadData();
+            };
         }
 
         private void FormProducts_Load(object sender, EventArgs e)
