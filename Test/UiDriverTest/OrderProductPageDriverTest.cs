@@ -86,6 +86,27 @@ namespace Test.UiDriverTest
         }
 
         [Fact]
+        public void TestGetCount()
+        {
+            ProductLogic logic = new ProductLogic();
+
+            try
+            {
+                logic.Create(new ProductBinding { Name = "Test1", Price = 10 });
+                OrderProductView orderProduct = new OrderProductView { ProductId = 1, Count = 10 };
+
+                OrderProductPageDriver driver = new OrderProductPageDriver(new UiContext(new OrderLogic(), logic), new OrderView(), orderProduct);
+                int count = driver.GetCount();
+
+                Assert.Equal(10, count);
+            }
+            finally
+            {
+                logic.Delete(null);
+            }
+        }
+
+        [Fact]
         public void TestSaveCreatedOrderProduct()
         {
             OrderView order = new OrderView();

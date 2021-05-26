@@ -1,4 +1,4 @@
-﻿	OrderProductPageDriver.GetCount
+﻿	Разобраться с таблицами в WinForms
 	WPF.ProgramWindow
 	WPF.OrdersWindow
 	WPF.OrderWindow
@@ -148,6 +148,6 @@ GetSum() должен возвращать 0 при ошибке
 - OrdersPageDriver.MoveToProductsPage должен работать с контекстом
 - WinForms.FormProducts
 - WinForms.FormProduct
-- 
+- OrderProductPageDriver.GetCount
 - 
 - 

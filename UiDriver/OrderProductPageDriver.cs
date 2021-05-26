@@ -55,6 +55,18 @@ namespace UiDriver
             }
         }
 
+        public int GetCount()
+        {
+            try
+            {
+                return orderProduct.Count;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         public bool SaveOrderProduct()
         {
             try
