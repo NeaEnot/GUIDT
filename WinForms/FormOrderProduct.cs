@@ -36,13 +36,23 @@ namespace WinForms
 
         private void FormOrderProduct_Load(object sender, EventArgs e)
         {
-            comboBox.Items.AddRange(driver.GetAllProducts().ToArray());
+            ProductView[] array = driver.GetAllProducts().ToArray();
+            comboBox.Items.AddRange(array);
 
             ProductView selected = driver.GetSelectedProduct();
             if (selected != null)
             {
-                comboBox.SelectedItem = selected;
+                foreach (ProductView product in array)
+                {
+                    if (product.Name == selected.Name)
+                    {
+                        comboBox.SelectedItem = product;
+                        break;
+                    }
+                }
             }
+
+            textBox.Text = driver.GetCount().ToString();
         }
 
         private void ChangeSum(object sender, EventArgs e)

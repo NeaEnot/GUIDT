@@ -12,5 +12,10 @@ namespace Core.Models.View
 
         [Column(title: "Цена", visible: true)]
         public int Price { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

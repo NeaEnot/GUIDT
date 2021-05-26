@@ -2,12 +2,9 @@
 using Core.Models.View;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using UiDriver;
 
@@ -58,14 +55,25 @@ namespace WinForms
 
         private void ConfigureDataGrid()
         {
-            dataGridView.Columns.Clear();
-
             Type type = typeof(ProductView);
 
             foreach (PropertyInfo prop in type.GetProperties().Where(rec => rec.GetCustomAttributes<ColumnAttribute>().Count() > 0))
             {
-                dataGridView.Columns.Add(prop.Name, prop.GetCustomAttribute<ColumnAttribute>().Title);
-                dataGridView.Columns[dataGridView.Columns.Count - 1].Visible = prop.GetCustomAttribute<ColumnAttribute>().Visible;
+                DataGridViewColumn column = null;
+                foreach (DataGridViewColumn c in dataGridView.Columns)
+                {
+                    if (c.Name == prop.Name)
+                    {
+                        column = c;
+                        break;
+                    }
+                }
+
+                if (column != null)
+                {
+                    column.HeaderText = prop.GetCustomAttribute<ColumnAttribute>().Title;
+                    column.Visible = prop.GetCustomAttribute<ColumnAttribute>().Visible;
+                }
             }
         }
 
@@ -82,6 +90,7 @@ namespace WinForms
         private void buttonDeleteProduct_Click(object sender, EventArgs e)
         {
             driver.DeleteProduct();
+            LoadData();
         }
     }
 }

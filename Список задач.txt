@@ -1,5 +1,4 @@
-﻿	Разобраться с таблицами в WinForms
-	WPF.ProgramWindow
+﻿	WPF.ProgramWindow
 	WPF.OrdersWindow
 	WPF.OrderWindow
 	WPF.OrderProductWindow
@@ -135,19 +134,36 @@ GetSum() должен возвращать 0 при ошибке
 Обработка ошибок в ProductsPageDriver.AddProduct
 Обработка ошибок в OrderPageDriver.AddOrderProduct
 Обработка ошибок в OrderPageDriver.SaveOrder
-- Обработка ошибок в OrdersPageDriver.AddOrder
-- Обработка ошибок в OrdersPageDriver.ToProducts
-- Привести названия методов UiDriver к одному стилю
-- WinForms.Program
-- WinForms.FormOrders
-- OrderPageDriver.SaveOrder должен возвращать bool
-- OrderProductPageDriver.SaveOrderProduct должен возвращать bool
-- WinForms.FormOrder
-- WinForms.FormOrderProduct
-- ProductPageDriver.SaveProduct должен возвращать bool
-- OrdersPageDriver.MoveToProductsPage должен работать с контекстом
-- WinForms.FormProducts
-- WinForms.FormProduct
-- OrderProductPageDriver.GetCount
+Обработка ошибок в OrdersPageDriver.AddOrder
+Обработка ошибок в OrdersPageDriver.ToProducts
+Привести названия методов UiDriver к одному стилю
+WinForms.Program
+WinForms.FormOrders
+OrderPageDriver.SaveOrder должен возвращать bool
+OrderProductPageDriver.SaveOrderProduct должен возвращать bool
+WinForms.FormOrder
+WinForms.FormOrderProduct
+ProductPageDriver.SaveProduct должен возвращать bool
+OrdersPageDriver.MoveToProductsPage должен работать с контекстом
+WinForms.FormProducts
+WinForms.FormProduct
+OrderProductPageDriver.GetCount
+Разобраться с таблицами в WinForms
+OrderProductPageDriver.SaveOrderProduct должен изменять Id с -1 на 0
+- Протестить WinForms
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
 - 
 - 

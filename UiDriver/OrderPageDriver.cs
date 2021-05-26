@@ -22,7 +22,7 @@ namespace UiDriver
 
         public List<OrderProductView> GetAllOrderProducts()
         {
-            return order.OrderProducts;
+            return order.OrderProducts.ToList();
         }
 
         public void DeleteOrderProduct()

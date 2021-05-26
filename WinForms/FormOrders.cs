@@ -48,19 +48,6 @@ namespace WinForms
             };
         }
 
-        private void ConfigureDataGrid()
-        {
-            dataGridView.Columns.Clear();
-
-            Type type = typeof(OrderView);
-
-            foreach (PropertyInfo prop in type.GetProperties().Where(rec => rec.GetCustomAttributes<ColumnAttribute>().Count() > 0))
-            {
-                dataGridView.Columns.Add(prop.Name, prop.GetCustomAttribute<ColumnAttribute>().Title);
-                dataGridView.Columns[dataGridView.Columns.Count - 1].Visible = prop.GetCustomAttribute<ColumnAttribute>().Visible;
-            }
-        }
-
         private void FormOrders_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -73,6 +60,30 @@ namespace WinForms
             ConfigureDataGrid();
         }
 
+        private void ConfigureDataGrid()
+        {
+            Type type = typeof(OrderView);
+
+            foreach (PropertyInfo prop in type.GetProperties().Where(rec => rec.GetCustomAttributes<ColumnAttribute>().Count() > 0))
+            {
+                DataGridViewColumn column = null;
+                foreach (DataGridViewColumn c in dataGridView.Columns)
+                {
+                    if (c.Name == prop.Name)
+                    {
+                        column = c;
+                        break;
+                    }
+                }
+
+                if (column != null)
+                {
+                    column.HeaderText = prop.GetCustomAttribute<ColumnAttribute>().Title;
+                    column.Visible = prop.GetCustomAttribute<ColumnAttribute>().Visible;
+                }
+            }
+        }
+
         private void buttonToProducts_Click(object sender, EventArgs e)
         {
             driver.ToProducts();
@@ -80,7 +91,8 @@ namespace WinForms
 
         private void buttonDeleteOrder_Click(object sender, EventArgs e)
         {
-            driver.UpdateOrder();
+            driver.DeleteOrder();
+            LoadData();
         }
 
         private void buttonUpdateOrder_Click(object sender, EventArgs e)

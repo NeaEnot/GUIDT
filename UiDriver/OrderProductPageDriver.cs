@@ -87,6 +87,7 @@ namespace UiDriver
 
                 if (orderProduct.Id < 0)
                 {
+                    orderProduct.Id = 0;
                     order.OrderProducts.Add(orderProduct);
                 }
 
