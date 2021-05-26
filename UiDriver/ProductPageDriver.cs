@@ -28,7 +28,7 @@ namespace UiDriver
             return product.Price;
         }
 
-        public void SaveProduct()
+        public bool SaveProduct()
         {
             try
             {
@@ -54,16 +54,19 @@ namespace UiDriver
                 {
                     context.ProductLogic.Create(model);
                     ShowInfoMessage("Product was created");
+                    return true;
                 }
                 else
                 {
                     context.ProductLogic.Update(model);
                     ShowInfoMessage("Product №" + model.Id + " was updated");
+                    return true;
                 }
             }
             catch(Exception ex)
             {
                 ShowErrorMessage(ex.Message);
+                return false;
             }
         }
     }

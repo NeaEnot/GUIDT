@@ -22,9 +22,10 @@ namespace Test.UiDriverTest
                 driver.ProductPrice = () => 38;
                 driver.ShowInfoMessage = (msg) => message = msg;
 
-                driver.SaveProduct();
+                bool result = driver.SaveProduct();
                 List<ProductView> list = logic.Read(null);
 
+                Assert.True(result);
                 Assert.Single(list);
                 Assert.Equal("Banan", list[0].Name);
                 Assert.Equal(38, list[0].Price);
@@ -50,9 +51,10 @@ namespace Test.UiDriverTest
                 driver.ProductPrice = () => 38;
                 driver.ShowInfoMessage = (msg) => message = msg;
 
-                driver.SaveProduct();
+                bool result = driver.SaveProduct();
                 List<ProductView> list = logic.Read(null);
 
+                Assert.True(result);
                 Assert.Single(list);
                 Assert.Equal("Banan", list[0].Name);
                 Assert.Equal(38, list[0].Price);
@@ -92,6 +94,7 @@ namespace Test.UiDriverTest
         public void TestIncorrectProductName()
         {
             List<string> messages = new List<string>();
+            List<bool> results = new List<bool>();
             ProductLogic logic = new ProductLogic();
 
             try
@@ -102,12 +105,15 @@ namespace Test.UiDriverTest
 
                 driver.ProductName = () => "Ananas";
                 driver.ProductPrice = () => 87;
-                driver.SaveProduct();
+                results.Add(driver.SaveProduct());
 
                 driver.ProductName = () => " ";
                 driver.ProductPrice = () => 87;
-                driver.SaveProduct();
+                results.Add(driver.SaveProduct());
 
+                Assert.Equal(2, results.Count);
+                Assert.False(results[0]);
+                Assert.False(results[1]);
                 Assert.Equal(2, messages.Count);
                 Assert.Equal("Product with name Ananas already exist", messages[0]);
                 Assert.Equal("Field name is empty", messages[1]);
@@ -122,6 +128,7 @@ namespace Test.UiDriverTest
         public void TestIncorrectPrice()
         {
             List<string> messages = new List<string>();
+            List<bool> results = new List<bool>();
             ProductLogic logic = new ProductLogic();
 
             try
@@ -131,12 +138,15 @@ namespace Test.UiDriverTest
 
                 driver.ProductName = () => "Ananas";
                 driver.ProductPrice = () => 0;
-                driver.SaveProduct();
+                results.Add(driver.SaveProduct());
 
                 driver.ProductName = () => "Banan";
                 driver.ProductPrice = () => -1;
-                driver.SaveProduct();
+                results.Add(driver.SaveProduct());
 
+                Assert.Equal(2, results.Count);
+                Assert.False(results[0]);
+                Assert.False(results[1]);
                 Assert.Equal(2, messages.Count);
                 Assert.Equal("Incorrect price", messages[0]);
                 Assert.Equal("Incorrect price", messages[1]);
