@@ -9,7 +9,7 @@ namespace UiDriver
     {
         #region сustomizableMethods
         public Action<UiContext, OrderView> MoveToOrderPage { private get; set; }
-        public Action MoveToProductsPage { private get; set; }
+        public Action<UiContext> MoveToProductsPage { private get; set; }
         public Func<OrderView> SelectedOrder { private get; set; }
         #endregion
 
@@ -75,7 +75,7 @@ namespace UiDriver
         {
             try
             {
-                MoveToProductsPage();
+                MoveToProductsPage(context);
             }
             catch (Exception ex)
             {

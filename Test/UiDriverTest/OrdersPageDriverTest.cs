@@ -112,7 +112,7 @@ namespace Test.UiDriverTest
             string msg = "";
             OrdersPageDriver driver = new OrdersPageDriver(new UiContext(new OrderLogic(), new ProductLogic()));
 
-            driver.MoveToProductsPage = () => { msg = "!"; };
+            driver.MoveToProductsPage = (context) => { msg = "!"; };
 
             driver.ToProducts();
 

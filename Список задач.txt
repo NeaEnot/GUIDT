@@ -146,7 +146,7 @@ GetSum() должен возвращать 0 при ошибке
 - WinForms.FormOrder
 - WinForms.FormOrderProduct
 - ProductPageDriver.SaveProduct должен возвращать bool
-- 
+- OrdersPageDriver.MoveToProductsPage должен работать с контекстом
 - 
 - 
 - 
