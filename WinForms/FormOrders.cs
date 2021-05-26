@@ -40,7 +40,12 @@ namespace WinForms
                 LoadData();
             };
 
-            driver.MoveToProductsPage = null;
+            driver.MoveToProductsPage = (context) =>
+            {
+                FormProducts form = new FormProducts(context);
+                form.ShowDialog();
+                LoadData();
+            };
         }
 
         private void ConfigureDataGrid()
